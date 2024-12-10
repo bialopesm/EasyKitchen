@@ -1,15 +1,18 @@
 class IngredientsController < ApplicationController
+<<<<<<< HEAD
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
     @ingredients = Ingredient.ordered
   end
 
-  def show
-  end
-
   def new
     @ingredient = Ingredient.new
+    # @ingredients = Ingredient.all
+  end
+
+  def show
+    @ingredient = Ingredient.find(params[:id])
   end
 
   def create
@@ -21,7 +24,7 @@ class IngredientsController < ApplicationController
         format.turbo_stream
       end
     else
-      # Add `status: :unprocessable_entity` here
+      # @ingredients = Ingredient.all
       render :new, status: :unprocessable_entity
     end
   end
@@ -33,7 +36,6 @@ class IngredientsController < ApplicationController
     if @ingredient.update(ingredient_params)
       redirect_to ingredients_path, notice: "ingredient was successfully updated."
     else
-      # Add `status: :unprocessable_entity` here
       render :edit, status: :unprocessable_entity
     end
   end
