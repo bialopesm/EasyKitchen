@@ -1,0 +1,9 @@
+<h1><%= @bookmark.recipe.title %> - Comments</h1>
+
+<% @bookmark.comments.each do |comment| %>
+  <div>
+    <p><strong><%= comment.user.email %>:</strong> <%= comment.text %></p>
+  </div>
+<% end %>
+
+<%= link_to 'Add a new comment', new_bookmark_comment_path(@bookmark) %>

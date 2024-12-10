@@ -1,0 +1,25 @@
+<h1>Create a comment</h1>
+
+<%= form_with model: @comment, url: bookmark_comments_path(@bookmark), local: true do |form| %>
+  <% if @comment.errors.any? %>
+    <div>
+      <h2>errors:</h2>
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :text, 'Comment' %>
+    <%= form.text_area :text, rows: 4, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit 'Add a comment' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to BookMarks', bookmark_path(@bookmark) %>
