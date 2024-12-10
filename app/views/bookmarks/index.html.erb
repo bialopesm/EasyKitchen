@@ -1,9 +1,51 @@
-<h1>My Bookmarks</h1>
-<% @bookmarks.each do |bookmark| %>
-  <div>
-    <p>Recipe: <%= bookmark.recipe.title %></p>
-    <%= link_to 'Show Recipe', recipe_path(bookmark.recipe) %> |
+<div class="container mt-3">
+  <div class="card d-flex flex-row align-items-center shadow" style="background-color: #FDFD96; border-radius: 24px; padding: 10px;">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <h5 class="text-center mx-auto">WELCOME USERNAME</h5>
+      <img src="image.jpg" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover; margin-left: 10px;">
+    </div>
   </div>
-<% end %>
+</div>
 
-<%= link_to 'Add a new book', new_bookmark_path %>
+<div class="text-center">
+  <%= link_to '+ NEW MEAL', new_ingredient_path, class: "btn w-50 rounded-5 py-2 mt-3 shadow", style: "background-color: #A8D254;" %>
+</div>
+
+<div class="container mt-4">
+  <div class="card mx-auto shadow" style="max-width: 600px; border-radius: 24px;">
+    <div class="card-body">
+      <h2 class="text-center">My History</h2>
+
+      <div class="input-group">
+        <div class="input-group-btn search-panel">
+            <select class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <option>All</option>
+                <option>Saved for later</option>
+                <option>5 rating Recipes</option>
+                <option>< 20 minutes Recipes</option>
+                <option>< 4 ingredients Recipes</option>
+            </select>
+        </div>
+
+        <input type="hidden" name="search_param" value="all" id="search_param">
+        <input type="text" class="form-control" name="x" placeholder="Search the recipe">
+        <span class="input-group-btn">
+          <button id="search-button" type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
+        </span>
+      </div>
+
+      <% if @bookmarks.present? %>
+        <% @bookmarks.each do |bookmark| %>
+          <p class="card-text">Recipe: <%= bookmark.recipe.title %></p>
+          <%= link_to 'Show Recipe', recipe_path(bookmark.recipe), class: 'btn btn-link' %> |
+        <% end %>
+      <% else %>
+        <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+          <p class="card-text">No Recipes marked yet.</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
