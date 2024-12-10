@@ -1,5 +1,10 @@
 class RecipesController < ApplicationController
 
+  def index
+    @recipes = Recipe.all
+
+  end
+
   def show
     client = OpenAI::Client.new
     chatgpt_response = client.chat(parameters: {
@@ -56,5 +61,6 @@ class RecipesController < ApplicationController
   def extract_steps(content, key)
     match = content.match(/#{key}\s*(.*?)(?=\z)/m)
     match ? match[1].strip : nil
-  end
+
+
 end
