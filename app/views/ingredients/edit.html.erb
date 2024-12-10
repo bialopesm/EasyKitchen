@@ -1,0 +1,11 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to ingredient"), ingredient_path(@ingredient) %>
+
+  <div class="header">
+    <h1>Edit ingredient</h1>
+  </div>
+
+  <%= turbo_frame_tag "ingredient_#{@ingredient.id}" do %>
+    <%= render "form", ingredient: @ingredient %>
+  <% end %>
+</main>

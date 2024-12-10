@@ -1,0 +1,11 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to ingredients"), ingredients_path %>
+
+  <div class="header">
+    <h1>New ingredient</h1>
+  </div>
+
+  <%= turbo_frame_tag @ingredient do %>
+    <%= render "form", ingredient: @ingredient %>
+  <% end %>
+</main>
