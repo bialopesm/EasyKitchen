@@ -5,6 +5,28 @@ class RecipesController < ApplicationController
 
   end
 
+  def new
+    @recipe = Recipe.new # Needed to instantiate the form_with
+  end
+
+  def create
+    @recipe = Recipe.new(recipe_params)
+    @recipe.save
+    # No need for app/views/recipes/create.html.erb
+    redirect_to recipe_path(@recipe)
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+    # No need for app/views/recipes/update.html.erb
+    redirect_to recipe_path(@recipe)
+  end
+
   def show
     client = OpenAI::Client.new
     chatgpt_response = client.chat(parameters: {
@@ -61,6 +83,9 @@ class RecipesController < ApplicationController
   def extract_steps(content, key)
     match = content.match(/#{key}\s*(.*?)(?=\z)/m)
     match ? match[1].strip : nil
+  end
 
-
+  def recipe_params
+    params.require(:recipe).permit(:title, :rating, :instructions, :prep_time, :done, :servings)
+  end
 end

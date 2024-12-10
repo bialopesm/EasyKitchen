@@ -1,7 +1,15 @@
-<h1>All Ingredients</h1>
-<% @ingredients.each do |ingredient| %>
-  <div>
-    <p><%= ingredient.name %></p>
-    <p><%= ingredient.quantity %></p>
+<div class="container">
+  <div class="header">
+    <h1>ingredients</h1>
+    <%= link_to "New ingredient",
+                new_ingredient_path,
+                class: "btn btn--primary",
+                data: { turbo_frame: dom_id(Ingredient.new) } %>
   </div>
-<% end %>
+
+  <%= turbo_frame_tag Ingredient.new %>
+
+  <%= turbo_frame_tag "ingredients" do %>
+    <%= render @ingredients %>
+  <% end %>
+</div>
