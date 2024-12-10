@@ -1,0 +1,9 @@
+<h1>My Bookmarks</h1>
+<% @bookmarks.each do |bookmark| %>
+  <div>
+    <p>Recipe: <%= bookmark.recipe.title %></p>
+    <%= link_to 'Show Recipe', recipe_path(bookmark.recipe) %> |
+  </div>
+<% end %>
+
+<%= link_to 'Add a new book', new_bookmark_path %>

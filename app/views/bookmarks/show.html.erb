@@ -1,0 +1,5 @@
+<h1>Bookmark Details</h1>
+<p>Recipe: <%= @bookmark.recipe.title %></p>
+<p>Add by: <%= @bookmark.user.email %></p>
+<%= link_to 'Show recipe', recipe_path(@bookmark.recipe) %>
+<%= link_to 'Back to BookMarks', bookmarks_path %>
