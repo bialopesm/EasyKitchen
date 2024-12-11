@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
 
     Rails.logger.info "Structured Recipe: #{@recipe_from_gpt.inspect}"
 
-    raise
+    # raise
 
     @recipe.save
     # No need for app/views/recipes/create.html.erb
