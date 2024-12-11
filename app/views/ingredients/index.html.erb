@@ -1,5 +1,6 @@
 <div class="container">
   <div class="header">
+
     <h1>ingredients</h1>
     <div class="btn btn-primary">
 
@@ -9,9 +10,9 @@
     </div>
   </div>
 
-  <%= turbo_frame_tag Ingredient.new %>
+  <%= render "form", ingredient: @ingredient || Ingredient.new %>
 
   <%= turbo_frame_tag "ingredients" do %>
-    <%= render @ingredients %>
+    <%= render partial: "ingredient", collection: @ingredients %>
   <% end %>
 </div>
