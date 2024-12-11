@@ -1,15 +1,11 @@
 <div class="container">
   <div class="header">
-    <h1>ingredients</h1>
-    <%= link_to "New ingredient",
-                new_ingredient_path,
-                class: "btn btn--primary",
-                data: { turbo_frame: dom_id(Ingredient.new) } %>
+    <h1>YOUR INGREDIENTS</h1>
   </div>
 
-  <%= turbo_frame_tag Ingredient.new %>
+  <%= render "form", ingredient: @ingredient || Ingredient.new %>
 
   <%= turbo_frame_tag "ingredients" do %>
-    <%= render @ingredients %>
+    <%= render partial: "ingredient", collection: @ingredients %>
   <% end %>
 </div>

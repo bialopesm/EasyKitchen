@@ -1,15 +1,15 @@
 <%= turbo_frame_tag "ingredient_#{ingredient.id}" do %>
   <div class="ingredient">
     <%= link_to ingredient.name, ingredient_path(ingredient) %>
-    <%=  ingredient.quantity %>
+    <%= ingredient.quantity %>
     <div class="ingredient__actions">
       <%= button_to "Delete",
                     ingredient_path(ingredient),
                     method: :delete,
-                    class: "btn btn--light" %>
+                    class: "btn btn-light" %>
       <%= link_to "Edit",
                   edit_ingredient_path(ingredient),
-                  class: "btn btn--light" %>
+                  class: "btn btn-light" %>
     </div>
   </div>
 <% end %>
