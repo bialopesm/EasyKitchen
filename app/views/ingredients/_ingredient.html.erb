@@ -1,17 +1,22 @@
 <%= turbo_frame_tag "ingredient_#{ingredient.id}" do %>
   <div class="ingredient border mb-1 p-2">
-    <%= ingredient.name %>
-    <%=  ingredient.quantity %>
-    <%=  ingredient.unit %>
-
-    <div class="ingredient__actions">
-      <%= button_to "Delete",
-                    ingredient_path(ingredient),
-                    method: :delete,
-                    class: "btn btn--light" %>
-      <%= link_to "Edit",
-                  edit_ingredient_path(ingredient),
-                  class: "btn btn--light" %>
+    <div class ="border p-1">
+      <%= ingredient.name %>
+    </div>
+    <div class="border p-1" style="width:300px;">
+      <div class="text-center">
+        <%=  ingredient.quantity %>
+        <%=  ingredient.unit %>
+      </div>
+    </div>
+    <div class="ingredient__actions mt-1 d-flex flex-end">
+      <%= button_to "",
+        ingredient_path(ingredient),
+        method: :delete,
+        class: "btn btn--light fa-regular fa-trash-can" %>
+      <%= link_to "",
+        edit_ingredient_path(ingredient),
+        class: "btn btn--light fa-regular fa-pen-to-square" %>
     </div>
   </div>
 <% end %>

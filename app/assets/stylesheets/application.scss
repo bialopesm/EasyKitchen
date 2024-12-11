@@ -13,5 +13,14 @@
 
 @import "mixins/media";
 
+@import "config/variables";
+@import "config/reset";
+
 @import "components/form";
 @import "components/ingredient";
+@import "components/btn_new_ingredient";
+@import "components/error_message";
+@import "components/visually_hidden";
+
+@import "layouts/container";
+@import "layouts/header";
