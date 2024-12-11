@@ -47,14 +47,17 @@ class RecipesController < ApplicationController
     }
 
     @recipe.title = @recipe_from_gpt["Recipe title"]
+    @recipe.prep_time = @recipe_from_gpt["Preparation time"]
+    @recipe.servings = @recipe_from_gpt["Servings"]
+    @recipe.instructions = @recipe_from_gpt["Step-by-step"]
 
     Rails.logger.info "Structured Recipe: #{@recipe_from_gpt.inspect}"
 
-    # raise
 
     @recipe.save
     # No need for app/views/recipes/create.html.erb
     redirect_to recipe_path(@recipe)
+    # raise
   end
 
   def edit
@@ -69,39 +72,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    client = OpenAI::Client.new
-    chatgpt_response = client.chat(parameters: {
-      model: "gpt-4o-mini",
-      messages: [{
-        role: "user",
-        content: "Create a recipe using the following ingredients:
-
-          The ingredients are: chicken/cheese/tomato.
-
-          The recipe should include and return exactly this format:
-          - Recipe title:
-          - Ingredients list: (exactly as given all the ingredients)
-          - Preparation time:
-          - Servings:
-          - Step-by-step: (instructions with details for each step)"
-      }]
-    })
-
-    Rails.logger.info "ChatGPT Response: #{chatgpt_response.inspect}"
-
-    response_content = chatgpt_response["choices"][0]["message"]["content"]
-
-    Rails.logger.info "Response Content: #{response_content}"
-
-    @recipe = {
-      "Recipe title" => extract_value(response_content, "Recipe title:"),
-      "Ingredients list" => extract_ingredients(response_content, "Ingredients list:"),
-      "Preparation time" => extract_value(response_content, "Preparation time:"),
-      "Servings" => extract_value(response_content, "Servings:"),
-      "Step-by-step" => extract_steps(response_content, "Step-by-step:")
-    }
-
-    Rails.logger.info "Structured Recipe: #{@recipe.inspect}"
+    @recipe = Recipe.find(params[:id])
   end
 
   private
