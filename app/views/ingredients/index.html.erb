@@ -1,6 +1,13 @@
 <div class="container">
   <div class="header">
-    <h1>YOUR INGREDIENTS</h1>
+
+    <h1>ingredients</h1>
+    <div class="btn btn-primary">
+
+    <%= link_to "New ingredient",
+                new_ingredient_path,
+                data: { turbo_frame: dom_id(Ingredient.new) } %>
+    </div>
   </div>
 
   <%= render "form", ingredient: @ingredient || Ingredient.new %>

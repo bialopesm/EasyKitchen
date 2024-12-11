@@ -1,7 +1,9 @@
 <%= turbo_frame_tag "ingredient_#{ingredient.id}" do %>
-  <div class="ingredient">
-    <%= link_to ingredient.name, ingredient_path(ingredient) %>
-    <%= ingredient.quantity %>
+  <div class="ingredient border mb-1 p-2">
+    <%= ingredient.name %>
+    <%=  ingredient.quantity %>
+    <%=  ingredient.unit %>
+
     <div class="ingredient__actions">
       <%= button_to "Delete",
                     ingredient_path(ingredient),
