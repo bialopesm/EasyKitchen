@@ -1,11 +1,19 @@
 <h1>Recipe Details</h1>
 
 <% if @recipe.present? %>
-  <p><strong>Recipe title:</strong> <%= @recipe["Recipe title"] %></p>
-  <p><strong>Ingredients list:</strong> <%= @recipe["Ingredients list"] %></p>
-  <p><strong>Preparation time:</strong> <%= @recipe["Preparation time"] %></p>
-  <p><strong>Servings:</strong> <%= @recipe["Servings"] %></p>
-  <p><strong>Step-by-step:</strong></p><pre><%= @recipe["Step-by-step"] %></pre>
+  <p><strong>Recipe title:</strong> <%= @recipe.title %></p>
+  <p><strong>Ingredients list:</strong> <%= @recipe.ingredients.pluck(:name).join(', ') %></p>
+  <p><strong>Preparation time:</strong> <%= @recipe.prep_time %></p>
+  <p><strong>Servings:</strong> <%= @recipe.servings %></p>
+  <p><strong>Step-by-step:</strong></p><pre><%= @recipe.instructions %></pre>
 <% else %>
   <p>No recipe data available.</p>
 <% end %>
+
+<p><strong>Reviews</strong></p>
+<ul class="list-group">
+  <% @recipe.comments.each do |comment| %>
+    <li class="list-group-item"><%= comment.content %></li>
+  <% end %>
+</ul>
+<br>

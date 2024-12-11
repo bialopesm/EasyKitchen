@@ -6,28 +6,13 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new # Needed to instantiate the form_with
+    @recipe = Recipe.new
+    2.times {@recipe.ingredients.build}
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.save
-    # No need for app/views/recipes/create.html.erb
-    redirect_to recipe_path(@recipe)
-  end
-
-  def edit
-    @recipe = Recipe.find(params[:id])
-  end
-
-  def update
-    @recipe = Recipe.find(params[:id])
-    @recipe.update(recipe_params)
-    # No need for app/views/recipes/update.html.erb
-    redirect_to recipe_path(@recipe)
-  end
-
-  def show
     client = OpenAI::Client.new
     chatgpt_response = client.chat(parameters: {
       model: "gpt-4o-mini",
@@ -35,7 +20,7 @@ class RecipesController < ApplicationController
         role: "user",
         content: "Create a recipe using the following ingredients:
 
-          The ingredients are: chicken/cheese/tomato.
+          #{@recipe.ingredients.pluck(:name).join('/')}
 
           The recipe should include and return exactly this format:
           - Recipe title:
@@ -52,7 +37,7 @@ class RecipesController < ApplicationController
 
     Rails.logger.info "Response Content: #{response_content}"
 
-    @recipe = {
+    @recipe_from_gpt = {
       "Recipe title" => extract_value(response_content, "Recipe title:"),
       "Ingredients list" => extract_ingredients(response_content, "Ingredients list:"),
       "Preparation time" => extract_value(response_content, "Preparation time:"),
@@ -60,7 +45,33 @@ class RecipesController < ApplicationController
       "Step-by-step" => extract_steps(response_content, "Step-by-step:")
     }
 
-    Rails.logger.info "Structured Recipe: #{@recipe.inspect}"
+    @recipe.title = @recipe_from_gpt["Recipe title"]
+    @recipe.prep_time = @recipe_from_gpt["Preparation time"]
+    @recipe.servings = @recipe_from_gpt["Servings"]
+    @recipe.instructions = @recipe_from_gpt["Step-by-step"]
+
+    Rails.logger.info "Structured Recipe: #{@recipe_from_gpt.inspect}"
+
+
+    @recipe.save
+    # No need for app/views/recipes/create.html.erb
+    redirect_to recipe_path(@recipe)
+    # raise
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+    # No need for app/views/recipes/update.html.erb
+    redirect_to recipe_path(@recipe)
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
   end
 
   private
@@ -86,6 +97,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :rating, :instructions, :prep_time, :done, :servings)
+    params.require(:recipe).permit(:title, :rating, :instructions, :prep_time, :done, :servings, ingredients_attributes: [[:id, :name, :quantity, :unit]])
   end
 end

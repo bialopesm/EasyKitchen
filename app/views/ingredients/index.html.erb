@@ -18,10 +18,10 @@
       data: { turbo_frame: dom_id(Ingredient.new) } %>
   </div>
 
-  <%= turbo_frame_tag Ingredient.new %>
+  <%= render "form", ingredient: @ingredient || Ingredient.new %>
 
   <%= turbo_frame_tag "ingredients" do %>
-    <%= render @ingredients %>
+    <%= render partial: "ingredient", collection: @ingredients %>
   <% end %>
 </div>
 
