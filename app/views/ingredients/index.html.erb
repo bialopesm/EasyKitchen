@@ -14,12 +14,13 @@
     <h2>Your ingredients</h2>
   </div>
 
-  <div>
-    <%= link_to "Add new ingredient",
+<div>
+  <%= link_to "Add new ingredient",
       new_ingredient_path,
       class: "btn btn-primary my-3 rounded-pill box-shadow",
-      data: { turbo_frame: dom_id(Ingredient.new) } %>
-  </div>
+      data: { turbo_frame: dom_id(Ingredient.new) },
+      style: "opacity: 0.8;" %>
+</div>
 
   <%= turbo_frame_tag Ingredient.new %>
 
@@ -32,10 +33,10 @@
   </div>
 
   <div style="display: flex; flex-direction: column; align-items: center;">
-    <div class="btn btn-dark mb-1 mt-3 rounded-pill">
+    <div class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 0.8;">
       <%= link_to "Use only my selection", recipes_path %>
     </div>
-    <div class="btn btn-dark mb-1 mt-3 rounded-pill">
+    <div class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 0.8;">
       <%= link_to "Use these and more", recipes_path %>
     </div>
   </div>
