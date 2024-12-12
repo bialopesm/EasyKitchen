@@ -4,7 +4,7 @@ class IngredientsController < ApplicationController
 
   def index
     @ingredients = Ingredient.ordered
-    @ingredient = Ingredient.new
+
   end
 
   def new
@@ -18,18 +18,17 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
-
+    @ingredient.user = current_user
     if @ingredient.save
       respond_to do |format|
         format.html { redirect_to ingredients_path, notice: "ingredient was successfully created." }
         format.turbo_stream do
-          render turbo_stream: turbo_stream.append(:ingredients, partial: "ingredients/ingredient",
+          render turbo_stream: turbo_stream.prepend(:ingredients, partial: "ingredients/ingredient",
             locals: { ingredient: @ingredient })
         end
         format.html { redirect_to ingredient_path(@ingredient) }
       end
     else
-      # @ingredients = Ingredient.all
       render :new, status: :unprocessable_entity
     end
   end

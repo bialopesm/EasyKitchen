@@ -1,22 +1,27 @@
-<%= turbo_frame_tag "ingredient_#{ingredient.id}" do %>
-  <div class="ingredient border mb-1 p-2">
-    <div class ="border p-1">
-      <%= ingredient.name %>
-    </div>
-    <div class="border p-1" style="width:300px;">
-      <div class="text-center">
-        <%=  ingredient.quantity %>
-        <%=  ingredient.unit %>
+<div class="row">
+
+  <%= turbo_frame_tag "ingredient_#{ingredient.id}" do %>
+    <div class="ingredient border mb-1 p-2 d-flex align-items-center justify-content-between">
+
+      <div class="ingredient-name border p-1" style="min-width: 75px;">
+        <%= ingredient.name %>
       </div>
+
+      <div class="ingredient-quantity border p-1 text-center mx-auto" style="width: 50px; display: flex; align-items: center; justify-content: center;">
+        <%= ingredient.quantity %> <%= ingredient.unit %>
+      </div>
+
+      <div class="ingredient__actions d-flex">
+        <%= button_to "",
+          ingredient_path(ingredient),
+          method: :delete,
+          class: "btn btn--light fa-regular fa-trash-can" %>
+        <%= link_to "",
+          edit_ingredient_path(ingredient),
+          class: "btn btn--light fa-regular fa-pen-to-square ms-2" %>
+      </div>
+
     </div>
-    <div class="ingredient__actions mt-1 d-flex flex-end">
-      <%= button_to "",
-        ingredient_path(ingredient),
-        method: :delete,
-        class: "btn btn--light fa-regular fa-trash-can" %>
-      <%= link_to "",
-        edit_ingredient_path(ingredient),
-        class: "btn btn--light fa-regular fa-pen-to-square" %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+
+</div>
