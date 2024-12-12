@@ -2,7 +2,7 @@
 
 <% if @recipe.present? %>
   <p><strong>Recipe title:</strong> <%= @recipe.title %></p>
-  <p><strong>Ingredients list:</strong> <%= @recipe.ingredients.pluck(:name).join(', ') %></p>
+
   <p><strong>Preparation time:</strong> <%= @recipe.prep_time %></p>
   <p><strong>Servings:</strong> <%= @recipe.servings %></p>
   <p><strong>Step-by-step:</strong></p><pre><%= @recipe.instructions %></pre>
