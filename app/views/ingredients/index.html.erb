@@ -31,7 +31,7 @@
 
 <div style="display: flex; flex-direction: column; align-items: center;">
   <div class="btn btn-dark mb-1 mt-3">
-    <%= link_to "That's all I have", recipes_path %>
+    <%= link_to "That's all I have", recipes_path(ingredients: current_user.ingredients.map(&:id)) %>
   </div>
   <div class="btn btn-dark mb-1 mt-3">
     <%= link_to "Use these and more", recipes_path %>

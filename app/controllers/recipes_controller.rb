@@ -2,17 +2,6 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all
-
-  end
-
-  def new
-    @recipe = Recipe.new
-    2.times {@recipe.ingredients.build}
-  end
-
-  def create
-    @recipe = Recipe.new(recipe_params)
-    @recipe.save
     client = OpenAI::Client.new
     chatgpt_response = client.chat(parameters: {
       model: "gpt-4o-mini",
@@ -57,6 +46,32 @@ class RecipesController < ApplicationController
     # No need for app/views/recipes/create.html.erb
     redirect_to recipe_path(@recipe)
     # raise
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+    # No need for app/views/recipes/update.html.erb
+    redirect_to recipe_path(@recipe)
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def new
+    @recipe = Recipe.new
+  end
+
+  def create
+    @recipe = Recipe.new(recipe_params)
+    @recipe.save
+    # No need for app/views/recipes/create.html.erb
+    redirect_to recipe_path(@recipe)
   end
 
   def edit
