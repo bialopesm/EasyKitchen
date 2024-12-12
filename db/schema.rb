@@ -38,8 +38,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_11_203324) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "unit"
-    t.bigint "recipe_id", null: false
-    t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -68,5 +66,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_11_203324) do
   add_foreign_key "bookmarks", "recipes"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "recipes"
-  add_foreign_key "ingredients", "recipes"
 end

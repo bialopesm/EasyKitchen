@@ -1,14 +1,2 @@
-<%# <%= turbo_stream.prepend "ingredients", @ingredient %>
-<%# <%= turbo_stream.update Ingredient.new, "" %>
-
-<%= turbo_stream.append "ingredients" do %>
-  <%= render partial: "ingredient", locals: { ingredient: @ingredient } %>
-<% end %>
-
-<%= turbo_stream.replace "new_ingredient" do %>
-  <%= simple_form_for(Ingredient.new) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :quantity %>
-    <%= f.submit "Add Ingredient" %>
-  <% end %>
-<% end %>
+<%= turbo_stream.prepend "ingredients", @ingredient %>
+<% <%= turbo_stream.update Ingredient.new, ""%>

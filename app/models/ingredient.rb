@@ -1,8 +1,9 @@
 class Ingredient < ApplicationRecord
 
-  scope :ordered, -> { order(id: :desc) }
-  belongs_to :recipe
   validates :name, presence: true
-  validates :quantity, presence: true
+  validates :quantity, presence: true, numericality: { greater_than: 0 }
+
+  scope :ordered, -> { order(id: :desc) }
+
 
 end
