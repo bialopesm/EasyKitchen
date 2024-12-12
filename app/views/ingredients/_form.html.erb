@@ -1,17 +1,17 @@
 <%= simple_form_for [@recipe, @ingredient],
-      html: { class: "ingredient form d-flex flex-column ",
-              data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
+  html: { class: "ingredient form d-flex flex-column ",
+  data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
 
   <div class="d-flex flex-wrap align-items-center">
     <%= f.input :name, input_html: { class: "form-control", style: "flex: 1;" }, label: "Name" %>
     <div class="me-3">
-<%= f.input :quantity, input_html: { class: "form-control", style: "flex: 0.5;" }, label: "Quantity" %>
+      <%= f.input :quantity, input_html: { class: "form-control", style: "flex: 0.5;" }, label: "Quantity" %>
     </div>
     <%= f.input :unit,
-          collection: ["Kg", "L", "mL", "g"],
-          include_blank: " ",
-          label: "Unit",
-          input_html: { class: "form-control", style: "flex: 0.75;" } %>
+      collection: ["Kg", "L", "mL", "g"],
+      include_blank: " ",
+      label: "Unit",
+      input_html: { class: "form-control", style: "flex: 0.75;" } %>
   </div>
 
   <div class="d-flex justify-content-start mb-3">
