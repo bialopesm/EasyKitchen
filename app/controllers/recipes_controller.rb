@@ -1,9 +1,42 @@
 class RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.all
+    ingredients_formated = params[:ingredients].map { |item| "#{item['name']} #{item['qtt']} #{item['unit']}/"}
+    client = OpenAI::Client.new
+    chatgpt_response = client.chat(parameters: {
+      model: "gpt-4o-mini",
+      messages: [{
+        role: "user",
+        content: "Create 5 recipes using the following ingredients:
 
+        #{ingredients_formated.join}
+
+          The recipe should include and return exactly this format:
+          - Recipe title:
+          - Ingredients list: (exactly as given all the ingredients)
+          - Preparation time:
+          - Servings:
+          - Step-by-step: (instructions with details for each step)
+
+          The message should return with the recipes separeted by $ Recipe title Ingredients list Preparation time Servings Step-by-step
+          "
+      }]
+    })
+
+    # Rails.logger.info "ChatGPT Response: #{chatgpt_response.inspect}"
+    response_content = chatgpt_response["choices"][0]["message"]["content"]
+    # Rails.logger.info "Response Content: #{response_content}"
+
+    @recipes_from_gpt = extract_recipes(response_content)
+
+    # @recipe.title = @recipe_from_gpt["Recipe title"]
+    # @recipe.prep_time = @recipe_from_gpt["Preparation time"]
+    # @recipe.servings = @recipe_from_gpt["Servings"]
+    # @recipe.instructions = @recipe_from_gpt["Step-by-step"]
+
+    Rails.logger.info "Structured Recipe: #{@recipes_from_gpt.inspect}"
   end
+
 
   def new
     @recipe = Recipe.new
@@ -27,50 +60,20 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
-  def show
-    @recipe = Recipe.find(params[:id])
-    client = OpenAI::Client.new
-    chatgpt_response = client.chat(parameters: {
-      model: "gpt-4o-mini",
-      messages: [{
-        role: "user",
-        content: "Create a recipe using the following ingredients:
-
-          #{@recipe.ingredients.pluck(:name).join('/')}
-
-          The recipe should include and return exactly this format:
-          - Recipe title:
-          - Ingredients list: (exactly as given all the ingredients)
-          - Preparation time:
-          - Servings:
-          - Step-by-step: (instructions with details for each step)"
-      }]
-    })
-
-    Rails.logger.info "ChatGPT Response: #{chatgpt_response.inspect}"
-
-    response_content = chatgpt_response["choices"][0]["message"]["content"]
-
-    Rails.logger.info "Response Content: #{response_content}"
-
-    @recipe_from_gpt = {
-      "Recipe title" => extract_value(response_content, "Recipe title:"),
-      "Ingredients list" => extract_ingredients(response_content, "Ingredients list:"),
-      "Preparation time" => extract_value(response_content, "Preparation time:"),
-      "Servings" => extract_value(response_content, "Servings:"),
-      "Step-by-step" => extract_steps(response_content, "Step-by-step:")
-    }
-
-    @recipe.title = @recipe_from_gpt["Recipe title"]
-    @recipe.prep_time = @recipe_from_gpt["Preparation time"]
-    @recipe.servings = @recipe_from_gpt["Servings"]
-    @recipe.instructions = @recipe_from_gpt["Step-by-step"]
-
-    Rails.logger.info "Structured Recipe: #{@recipe_from_gpt.inspect}"
-
-  end
-
   private
+
+  def extract_recipes(content)
+    raw_recipes = content.split("$").map(&:strip)
+    raw_recipes.map do |raw_recipe|
+      {
+        "Recipe title" => extract_value(raw_recipe, "Recipe title:"),
+        "Ingredients list" => extract_ingredients(raw_recipe, "Ingredients list:"),
+        "Preparation time" => extract_value(raw_recipe, "Preparation time:"),
+        "Servings" => extract_value(raw_recipe, "Servings:"),
+        "Step-by-step" => extract_steps(raw_recipe, "Step-by-step:")
+      }
+    end
+  end
 
   def extract_value(content, key)
     match = content.match(/#{key}\s*(.*?)(?=\n\s*-|\z)/)
