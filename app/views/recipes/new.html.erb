@@ -1,13 +1,1 @@
-<%= simple_form_for @recipe do |form| %>
-  Ingredients:
-  <ul>
-    <%= form.simple_fields_for :ingredients do |ingredients_form| %>
-      <li>
-        <%= ingredients_form.input :name  %>
-        <%= ingredients_form.input :quantity  %>
-        <%= ingredients_form.input :unit  %>
-      </li>
-    <% end %>
-    <%= form.submit class: "btn btn--secondary" %>
-  </ul>
-<% end %>
+<h1>NEW RECIPE</h1>

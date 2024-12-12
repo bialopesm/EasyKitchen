@@ -40,12 +40,17 @@ class RecipesController < ApplicationController
     @recipe.instructions = @recipe_from_gpt["Step-by-step"]
 
     Rails.logger.info "Structured Recipe: #{@recipe_from_gpt.inspect}"
+  end
 
+  def new
+    @recipe = Recipe.new
+  end
 
+  def create
+    @recipe = Recipe.new(recipe_params)
     @recipe.save
     # No need for app/views/recipes/create.html.erb
     redirect_to recipe_path(@recipe)
-    # raise
   end
 
   def edit
@@ -61,6 +66,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+
   end
 
   def new
@@ -112,6 +118,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :rating, :instructions, :prep_time, :done, :servings, ingredients_attributes: [[:id, :name, :quantity, :unit]])
+    params.require(:recipe).permit(:title, :rating, :instructions, :prep_time, :done, :servings)
   end
+
 end
