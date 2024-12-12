@@ -1,50 +1,44 @@
-<div class="mb-5 p-5" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
 
   <%= link_to bookmarks_path, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
   <% end %>
 
   <h1 class="text-center" style="margin: 0;">What to cook ?</h1>
+
 </div>
 
-
-
-
-
 <div class="container-fluid">
-  <div class="text-center p-3 rounded-5" style="background-color: #f29006; opacity: 0.5;">
+
+  <div class="text-center p-2 rounded-3" style="background-color: #f29006; opacity: 0.5;">
     <h2>Your ingredients</h2>
   </div>
 
-
-    <%= link_to "New ingredient",
+<div>
+  <%= link_to "Add new ingredient",
       new_ingredient_path,
-
-      data: { turbo_frame: dom_id(Ingredient.new) } %>
+      class: "btn btn-primary my-3 rounded-pill box-shadow",
+      data: { turbo_frame: dom_id(Ingredient.new) },
+      style: "opacity: 0.8;" %>
+</div>
 
   <%= turbo_frame_tag Ingredient.new %>
 
   <%= turbo_frame_tag "ingredients" do %>
     <%= render @ingredients %>
   <% end %>
-</div>
 
 
-
-
-
-
-
-
-<div class="text-center p-3 rounded-5 my-5" style="background-color: #f29006; opacity: 0.5;">
-  <h2>You maybe have</h2>
-</div>
-
-<div style="display: flex; flex-direction: column; align-items: center;">
-  <div class="btn btn-dark mb-1 mt-3">
-    <%= link_to "That's all I have", recipes_path(ingredients: current_user.ingredients.map {|ing| { name: ing.name, unit: ing.unit, qtt: ing.quantity } })%>
+  <div class="text-center p-2 rounded-3 my-3" style="background-color: #f29006; opacity: 0.5;">
+    <h2>You maybe have</h2>
   </div>
-  <div class="btn btn-dark mb-1 mt-3">
-    <%= link_to "Use these and more", recipes_path %>
+
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <div class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 0.8;">
+      <%= link_to "Use only my selection", recipes_path(ingredients: current_user.ingredients.map {|ing| { name: ing.name, unit: ing.unit, qtt: ing.quantity } }) %>
+    </div>
+    <div class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 0.8;">
+      <%= link_to "Use these and more", recipes_path %>
+    </div>
   </div>
 </div>
