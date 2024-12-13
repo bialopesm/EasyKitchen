@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
 
   def index
-    ingredients_formated = params[:ingredients].map { |item| "#{item['name']} #{item['qtt']} #{item['unit']}/"}
+    ingredients_formated = current_user.ingredients.map { |ingredient| "#{ingredient.name} #{ingredient.quantity} #{ingredient.unit}/"}
     client = OpenAI::Client.new
     chatgpt_response = client.chat(parameters: {
       model: "gpt-4o-mini",
