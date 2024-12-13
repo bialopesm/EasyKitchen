@@ -1,0 +1,8 @@
+<%= form_with model: comment, url: recipe_comments_path(comment.recipe), method: :post do |form| %>
+  <div class="mb-3">
+    <%= form.label :content, "Your Comment", class: "form-label" %>
+    <%= form.text_area :content, class: "form-control", rows: 3 %>
+  </div>
+
+  <%= form.submit "Save Comment", class: "btn btn-success" %>
+<% end %>
