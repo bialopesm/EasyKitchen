@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
 
   def index
-    ingredients_formated = params[:ingredients].map { |item| "#{item['name']} #{item['qtt']} #{item['unit']}/"}
+    ingredients_formated = current_user.ingredients.map { |ingredient| "#{ingredient.name} #{ingredient.quantity} #{ingredient.unit}/"}
     client = OpenAI::Client.new
     chatgpt_response = client.chat(parameters: {
       model: "gpt-4o-mini",
@@ -43,15 +43,23 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    # @recipe = Recipe.find(params[:id])
+
   end
 
 
   def create
-    @recipe = Recipe.new(recipe_params)
+
+    params.require(:recipe_data).permit("Recipe title", "Preparation time", "Servings", "Step-by-step")
+    @recipe = Recipe.new()
+    @recipe.title = params[:recipe_data]["Recipe title"]
+    @recipe.prep_time = params[:recipe_data]["Preparation time"]
+    @recipe.servings = params[:recipe_data]["Servings"]
+    @recipe.instructions = params[:recipe_data]["Step-by-step"]
+    @recipe.done = true
     @recipe.save
     # No need for app/views/recipes/create.html.erb
-    redirect_to recipe_path(@recipe)
+    redirect_to new_recipe_comment_path(@recipe)
   end
 
   def edit

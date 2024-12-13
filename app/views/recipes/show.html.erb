@@ -14,25 +14,17 @@
   <%# -------------------- Display recipe ------------------ %>
 
 <div class="border m-3">
-
-<% if @recipe.present? %>
-  <p><strong>Recipe title:</strong> <%= @recipe.title %></p>
-
-  <p><strong>Preparation time:</strong> <%= @recipe.prep_time %></p>
-  <p><strong>Servings:</strong> <%= @recipe.servings %></p>
-  <p><strong>Step-by-step:</strong></p><pre><%= @recipe.instructions %></pre>
-<% else %>
-  <p>No recipe data available.</p>
-<% end %>
-
-
+  <p><strong>Recipe title:</strong> <%= params["recipe"]["Recipe title"] %></p>
+  <p><strong>Preparation time:</strong> <%= params["recipe"]["Preparation time"] %></p>
+  <p><strong>Servings:</strong> <%= params["recipe"]["Servings"]%></p>
+  <p><strong>Step-by-step:</strong></p><pre><%= params["recipe"]["Step-by-step"] %></pre>
 </div>
 
 
   <%# -------------------- Buttons ------------------ %>
 
 <div class="d-flex justify-content-center">
-<%= link_to "I did it !", new_recipe_comment_path(1), class: "btn btn-success mx-1" %>
+<%= button_to 'I did it', {:controller => "recipes", :action => "create", :recipe_data => params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step")} , :method=>:post, class: "btn btn-success mx-1"  %>
 
 
 
