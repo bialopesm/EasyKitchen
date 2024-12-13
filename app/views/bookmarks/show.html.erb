@@ -1,5 +1,61 @@
-<h1>Bookmark Details</h1>
-<p>Recipe: <%= @bookmark.recipe.title %></p>
-<p>Add by: <%= @bookmark.user.email %></p>
-<%= link_to 'Show recipe', recipe_path(@bookmark.recipe) %>
-<%= link_to 'Back to BookMarks', bookmarks_path %>
+  <%# -------------------- Header ------------------ %>
+
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display:
+flex; justify-content: center; align-items: center; position: relative;">
+
+  <%= link_to bookmarks_path, style: "position: absolute; left: 20px;" do %>
+    <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
+  <% end %>
+
+  <h1 class="text-center" style="margin: 0;">YOUR PREVIOUS RECIPE</h1>
+
+</div>
+
+
+  <%# -------------------- Recipe ------------------ %>
+
+<div class="border m-3 p-3">
+
+  <% if @bookmark.recipe.present? %>
+    <h2><strong>Recipe title:</strong> <%= @bookmark.recipe.title %></h2>
+
+    <p><strong>Preparation time:</strong> <%= @bookmark.recipe.prep_time %></p>
+    <p><strong>Servings:</strong> <%= @bookmark.recipe.servings %></p>
+    <p><strong>Step-by-step:</strong></p><pre><%= @bookmark.recipe.instructions
+     %></pre>
+  <% else %>
+    <p>No recipe data available.</p>
+  <% end %>
+
+</div>
+
+
+  <%# -------------------- Comment ------------------ %>
+
+<div class="border mx-3 mb-3 p-3">
+
+  <h2>Your comment :</h2>
+
+  <% if @comments.any? %>
+    <ul>
+      <% @comments.each do |comment| %>
+        <li>
+          <strong><%= comment.created_at.strftime("%d %b %Y, %H:%M") %></strong> :
+          <%= comment.content %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No comments yet. Be the first to comment!</p>
+  <% end %>
+
+</div>
+
+
+  <%# -------------------- Button back home ------------------ %>
+
+<div class="d-flex justify-content-center mt-5">
+  <%= link_to bookmarks_path, class: "d-flex justify-content-center" do %>
+    <i class="fa-solid fa-house fa-2xl"></i>
+  <% end %>
+</div>
