@@ -13,12 +13,12 @@
 
 @import "mixins/media";
 
-@import "config/variables";
 @import "config/reset";
 
 @import "components/form";
 @import "components/ingredient";
 @import "components/btn_new_ingredient";
+@import "components/search_bar_bookmarks_page";
 
 @import "components/visually_hidden";
 

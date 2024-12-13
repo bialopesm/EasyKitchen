@@ -1,5 +1,5 @@
 <%= form_with model: comment, url: recipe_comments_path(comment.recipe), method: :post do |form| %>
-  <div class="mb-3">
+  <div class="my-3">
     <%= form.label :content, "Your Comment", class: "form-label" %>
     <%= form.text_area :content, class: "form-control", rows: 3 %>
   </div>

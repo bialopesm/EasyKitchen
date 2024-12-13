@@ -1,40 +1,58 @@
-<div class="container mt-3">
-  <div class="card d-flex flex-row align-items-center shadow" style="background-color: #FDFD96; border-radius: 24px; padding: 10px;">
+<div class="container-fluid mt-3">
+  <div class="card d-flex flex-row align-items-center shadow" style="background-color: #FDFD96; opacity: 0.8; border-radius: 12px; padding: 10px;">
     <div class="d-flex justify-content-between align-items-center w-100">
-      <h5 class="text-center mx-auto">WELCOME USERNAME</h5>
-      <img src="image.jpg" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover; margin-left: 10px;">
+      <h5 class="text-center mx-auto">Welcome <%= current_user.email%></h5>
     </div>
   </div>
 </div>
 
 <div class="text-center">
-  <%= link_to '+ NEW MEAL', ingredients_path, class: "btn w-50 rounded-5 py-2 mt-3 shadow", style: "background-color: #A8D254;" %>
+  <%= link_to '+ NEW MEAL', ingredients_path, class: "btn w-75 rounded-5 py-2 mt-3 shadow", style: "background-color: #a8d254; opacity: 0.5;" %>
 </div>
 
-<div class="container mt-4">
-  <div class="card mx-auto shadow" style="max-width: 600px; border-radius: 24px;">
+<div class="container-fluid mt-3">
+  <div class="card mx-auto shadow" style="max-width: 600px; border-radius: 24px; background-color:#f29006; opacity: 0.5;">
     <div class="card-body">
-      <h2 class="text-center">My History</h2>
+      <h2 class="text-center mb-3">My History</h2>
 
-      <div class="input-group">
+      <%# <div class="input-group">
+
         <div class="input-group-btn search-panel">
-            <select class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <option>All</option>
+          <i class="fa-solid fa-filter fa-xl"></i>
+            <select class="btn btn-default dropdown-toggle border" style="width:10px;" data-toggle="dropdown">
+                <option>All recipes</option>
                 <option>Saved for later</option>
                 <option>5 rating Recipes</option>
                 <option>< 20 minutes Recipes</option>
                 <option>< 4 ingredients Recipes</option>
             </select>
-        </div>
+        </div> %>
 
-        <input type="hidden" name="search_param" value="all" id="search_param">
-        <input type="text" class="form-control" name="x" placeholder="Search the recipe">
-        <span class="input-group-btn">
-          <button id="search-button" type="button" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-          </button>
-        </span>
-      </div>
+
+  <%# <div class="container d-flex justify-content-center">
+    <div class="d-flex w-50">
+      <input type="hidden" name="search_param" value="all" id="search_param">
+      <input type="text" class="form-control" name="x" placeholder="Search a recipe" style="flex-grow: 1;">
+      <button id="search-button" type="button" class="btn btn-primary">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+        </div> %>
+
+  <input type="text" id="recipeList" onkeyup="myFunction()" placeholder="Search for recipes..">
+
+  <ul id="mytestUL">
+    <li class="mb-3"><a href="#">Mc and Cheese</a></li>
+    <li class="mb-3"><a href="#">Chicken Nuggets</a></li>
+
+    <li class="mb-3"><a href="#">Tomato soup</a></li>
+    <li class="mb-3"><a href="#">Chicken curry</a></li>
+
+    <li class="mb-3"><a href="#">Rice and beans</a></li>
+    <li class="mb-3"><a href="#">Puree</a></li>
+    <li class="mb-3"><a href="#">Banana split</a></li>
+  </ul>
 
       <% if @bookmarks.present? %>
         <% @bookmarks.each do |bookmark| %>
@@ -49,3 +67,25 @@
     </div>
   </div>
 </div>
+
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('recipeList');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("mytestUL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
