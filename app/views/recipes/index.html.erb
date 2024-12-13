@@ -22,7 +22,7 @@
             <p><strong>Ingredients:</strong> <%= recipe["Ingredients list"] %></p>
             <p><strong>Preparation Time:</strong> <%= recipe["Preparation time"] %></p>
 
-          <%#= link_to 'Let s do it!', recipe_path(recipe_id), class:"btn btn-success btn-sm" %>
+          <%= link_to 'Let s do it!', recipe_path(1, recipe: recipe), class:"btn btn-success btn-sm" %>
         </div>
       </div>
     </div>
