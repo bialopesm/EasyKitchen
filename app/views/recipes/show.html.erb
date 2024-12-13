@@ -1,4 +1,19 @@
-<h1>Recipe Details</h1>
+  <%# -------------------- Header ------------------ %>
+
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
+
+  <%= link_to recipes_path, style: "position: absolute; left: 20px;" do %>
+    <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
+  <% end %>
+
+  <h1 class="text-center" style="margin: 0;">YOUR RECIPE</h1>
+
+</div>
+
+
+  <%# -------------------- Display recipe ------------------ %>
+
+<div class="border m-3">
 
 <% if @recipe.present? %>
   <p><strong>Recipe title:</strong> <%= @recipe.title %></p>
@@ -10,10 +25,16 @@
   <p>No recipe data available.</p>
 <% end %>
 
-<p><strong>Reviews</strong></p>
-<ul class="list-group">
-  <% @recipe.comments.each do |comment| %>
-    <li class="list-group-item"><%= comment.content %></li>
-  <% end %>
-</ul>
-<br>
+
+</div>
+
+
+  <%# -------------------- Buttons ------------------ %>
+
+<div class="d-flex justify-content-center">
+<%= link_to "I did it !", new_recipe_comment_path(1), class: "btn btn-success mx-1" %>
+
+
+
+<%= link_to "Save it for later", ingredients_path, class: "btn btn-dark mx-1" %>
+</div>

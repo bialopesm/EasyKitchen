@@ -1,7 +1,12 @@
-<div class="container mt-3">
-  <div class="header bg-lightgreen p-3 mb-3">
-    <h4 class="text-center text-black">RECIPE SUGGESTIONS</h4>
-  </div>
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
+
+  <%= link_to ingredients_path, style: "position: absolute; left: 20px;" do %>
+    <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
+  <% end %>
+
+  <h1 class="text-center" style="margin: 0;">RECIPES SUGGESTIONS</h1>
+
+</div>
 
   <div class="accordion" id="recipeAccordion">
     <!-- Recipes -->
@@ -16,7 +21,8 @@
         <div class="accordion-body">
             <p><strong>Ingredients:</strong> <%= recipe["Ingredients list"] %></p>
             <p><strong>Preparation Time:</strong> <%= recipe["Preparation time"] %></p>
-          <button class="btn btn-success btn-sm">Let's do it!</button>
+
+          <%= link_to 'Let s do it!', recipe_path(recipe_id), class:"btn btn-success btn-sm" %>
         </div>
       </div>
     </div>
