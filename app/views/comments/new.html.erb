@@ -11,12 +11,13 @@
 </div>
 
 <div class="mt-3">
-  <button id="share-button" class="btn btn-outline-primary mt-5">Share comment</button>
+  <button id="share-button" class="btn btn-outline-primary mt-5" data-url="<%= recipe_url(@comment.recipe) %>">Share comment</button>
 </div>
 
 <script>
-  document.getElementById("share-button").addEventListener("click", function () {
-    const message = "Check out this recipe I just tried!";
+  const button = document.getElementById("share-button")
+  button.addEventListener("click", function () {
+    const message = `"Check out this recipe I just tried!" ${button.dataset.url}`;
     const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   });
