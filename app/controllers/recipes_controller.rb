@@ -11,7 +11,7 @@ class RecipesController < ApplicationController
 
         #{ingredients_formated.join}
 
-          The recipe should include and return exactly this format:
+          The recipe should use this format bellow to display the 5 recipes:
           - Recipe title:
           - Ingredients list: (exactly as given all the ingredients)
           - Preparation time:
@@ -69,7 +69,7 @@ class RecipesController < ApplicationController
 
   def extract_recipes(content)
     raw_recipes = content.split("$").map(&:strip)
-    raw_recipes.map do |raw_recipe|
+    raw_recipes[1..].map do |raw_recipe|
       {
         "Recipe title" => extract_value(raw_recipe, "Recipe title:"),
         "Ingredients list" => extract_ingredients(raw_recipe, "Ingredients list:"),
