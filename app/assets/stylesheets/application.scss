@@ -25,3 +25,15 @@
 
 @import "layouts/container";
 @import "layouts/header";
+
+// This is for the styling of the footer navigation //
+
+.footer nav ul li {
+  margin: 15px 15px; // Adds space between icons //
+}
+
+
+.footer nav ul {
+  list-style: none; // Removes bullet points //
+
+}
