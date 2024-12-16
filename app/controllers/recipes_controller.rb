@@ -27,7 +27,13 @@ class RecipesController < ApplicationController
     response_content = chatgpt_response["choices"][0]["message"]["content"]
     # Rails.logger.info "Response Content: #{response_content}"
 
-    @recipes_from_gpt = extract_recipes(response_content)
+    if session[:recipes].present?
+      @recipes_from_gpt = session[:recipes]
+    else
+      @recipes_from_gpt = extract_recipes(response_content)
+      session[:recipes] = @recipes_from_gpt
+    end
+
 
     # @recipe.title = @recipe_from_gpt["Recipe title"]
     # @recipe.prep_time = @recipe_from_gpt["Preparation time"]
@@ -44,7 +50,6 @@ class RecipesController < ApplicationController
 
   def show
     # @recipe = Recipe.find(params[:id])
-
   end
 
 
