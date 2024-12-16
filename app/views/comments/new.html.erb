@@ -11,17 +11,10 @@
   <%# ----------TO REPLACE WITH ACTUAL DATA---------- %>
 
 <div class="border mx-3 p-3">
-  <div class="mb-3">
-    <i class="fa-regular fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-  </div>
-<h3><strong>Recipe title</strong></h3>
-<p>You used X ingredients from your fridge to prepare this recipe !</p>
-<p>Prep-time : prep_time</p>
-<p>Servings : servings</p>
+  <h3><strong>Recipe title</strong></h3>
+  <p>You used X ingredients from your fridge to prepare this recipe !</p>
+  <p>Prep-time : prep_time</p>
+  <p>Servings : servings</p>
 </div>
 
 
@@ -30,10 +23,13 @@
 <div class="d-flex justify-content-between">
 
   <div data-controller="toggle" class="m-3">
-    <button data-action="click->toggle#fire" class="btn btn-outline-primary">Write comment</button>
+    <button data-action="click->toggle#fire" class="btn btn-outline-primary">Write comment and rate</button>
     <div data-toggle-target="togglableElement" class="d-none">
       <%= render "form", comment: @comment %>
     </div>
+
+    <%= render 'form', comment: @comment %>
+
   </div>
 
 
