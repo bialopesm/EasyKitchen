@@ -49,7 +49,6 @@ flex; justify-content: center; align-items: center; position: relative;">
   <% else %>
     <p>No comments for this recipe.</p>
   <% end %>
-
 </div>
 
 
@@ -62,14 +61,12 @@ flex; justify-content: center; align-items: center; position: relative;">
 
   <%# -------------------- Button delete ------------------------------------ %>
 
- <%= button_to "",
-          bookmark_path(@bookmark),
-          method: :delete,
-          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-          class: "btn btn--light fa-regular fa-trash-can"%>
-
-
-  <%# -------------------- Button back home --------------------------------- %>
+    <%= button_to "Delete this recipe",
+              bookmark_path(@bookmark),
+              method: :delete,
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "btn btn-danger"%>
+  <%# -------------------- Button back home ------------------ %>
 
 <div class="d-flex justify-content-center mt-5">
   <%= link_to bookmarks_path, class: "d-flex justify-content-center" do %>
