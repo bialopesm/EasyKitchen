@@ -28,5 +28,10 @@
 
 
 
-<%= link_to "Save it for later", ingredients_path, class: "btn btn-dark mx-1" %>
+<%# <%= link_to "Save it for later", ingredients_path, class: "btn btn-dark mx-1" %>
+<%= link_to 'Save it for later', {:controller => "recipes", :action => "create",
+                                    :recipe_data => params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step")} ,
+                                    :method=>:post,
+                                    class: "btn btn-success mx-1",
+                                    data: { turbo: true } %>
 </div>

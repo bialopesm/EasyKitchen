@@ -15,7 +15,7 @@
   </div>
 
 <div>
-  <%= link_to "Add new ingredient",
+  <%= link_to "+ ingredient",
       new_ingredient_path,
       class: "btn btn-primary my-3 rounded-pill box-shadow",
       data: { turbo_frame: dom_id(Ingredient.new) },
@@ -35,10 +35,7 @@
 
   <div style="display: flex; flex-direction: column; align-items: center;">
     <div class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 0.8;">
-      <%= link_to "Use only my selection", recipes_path %>
-    </div>
-    <div class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 0.8;">
-      <%= link_to "Use these and more", recipes_path %>
+      <%= link_to "Create a recipe", recipes_path %>
     </div>
   </div>
 </div>

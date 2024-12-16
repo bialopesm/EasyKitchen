@@ -1,6 +1,7 @@
 <%= form_with model: comment,
               url: recipe_comments_path(comment.recipe),
               method: :post,
+              remote: true,
               data: { controller: "form-submit" } do |form| %>
 
   <div class="my-3">
