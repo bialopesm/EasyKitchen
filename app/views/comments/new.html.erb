@@ -1,7 +1,7 @@
   <%# ------------------ Header -------------------- %>
 
 <div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
-  <%= link_to ingredients_path, style: "position: absolute; left: 20px;" do %>
+  <%= link_to request.referer, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
   <% end %>
   <h1 class="text-center" style="margin: 0;">COMMENT / SHARE</h1>
@@ -11,10 +11,9 @@
   <%# ----------TO REPLACE WITH ACTUAL DATA---------- %>
 
 <div class="border mx-3 p-3">
-  <h3><strong>Recipe title</strong></h3>
-  <p>You used X ingredients from your fridge to prepare this recipe !</p>
-  <p>Prep-time : prep_time</p>
-  <p>Servings : servings</p>
+  <h3><strong><%= @recipe.title %></strong></h3>
+  <p>Prep-time : <%= @recipe.prep_time %></p>
+  <p>Servings : <%= @recipe.servings %></p>
 </div>
 
 
