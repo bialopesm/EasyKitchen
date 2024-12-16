@@ -4,7 +4,7 @@ class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :destroy]
 
   def index
-    @bookmarks = current_user.bookmarks
+    @bookmarks = current_user.bookmarks.includes(:recipe).order('recipes.id DESC')
   end
 
   def show
