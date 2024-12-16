@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @comment = @recipe.comments.new(comment_params)
 
-3    if params[:recipe] && params[:recipe][:rating].present?
+    if params[:recipe] && params[:recipe][:rating].present?
       @recipe.update(rating: params[:recipe][:rating])
     end
 
