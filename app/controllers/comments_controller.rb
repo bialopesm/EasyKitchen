@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
 
     if @comment.save
-      redirect_to recipes_path, notice: 'It was created!'
+      redirect_to bookmarks_path, notice: 'It was created!'
     else
       render :new, alert: 'Error. Could not create.'
     end
