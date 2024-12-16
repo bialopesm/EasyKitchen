@@ -27,9 +27,6 @@
     <div data-toggle-target="togglableElement" class="d-none">
       <%= render "form", comment: @comment %>
     </div>
-
-    <%= render 'form', comment: @comment %>
-
   </div>
 
 
@@ -44,7 +41,7 @@
 
   <%# --------------- Back to home page --------------- %>
 
-    <%= link_to "Skip to home page", bookmarks_path, class: "btn btn-dark rounded-pill mx-5" %>
+    <%= link_to "Skip to home page", erase_path, class: "btn btn-dark rounded-pill mx-5" %>
 
 
   <%# -------------------- Script ------------------ %>

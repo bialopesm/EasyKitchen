@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
 
   root "bookmarks#index"
+  get "/erase", to: "recipes#erase"
 
   resources :ingredients
   resources :recipes, only: [:index, :show, :new, :create] do
