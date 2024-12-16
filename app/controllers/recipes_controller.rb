@@ -52,6 +52,15 @@ class RecipesController < ApplicationController
     # @recipe = Recipe.find(params[:id])
   end
 
+  def erase
+    @ingredients = current_user.ingredients
+    @ingredients.each do |ingredient|
+      ingredient.destroy
+    end
+    session.delete(:recipes)
+    redirect_to bookmarks_path
+  end
+
 
   def create
 
