@@ -23,6 +23,7 @@ flex; justify-content: center; align-items: center; position: relative;">
     <p><strong>Servings:</strong> <%= @bookmark.recipe.servings %></p>
     <p><strong>Step-by-step:</strong></p><pre><%= @bookmark.recipe.instructions
      %></pre>
+    <p><strong>Rating :</strong> <%= @bookmark.recipe.rating %>/5</p>
   <% else %>
     <p>No recipe data available.</p>
   <% end %>
@@ -30,7 +31,7 @@ flex; justify-content: center; align-items: center; position: relative;">
 </div>
 
 
-  <%# -------------------- Comment ------------------ %>
+  <%# -------------------- Comment ------------------------------------------ %>
 
 <div class="border mx-3 mb-3 p-3">
 
@@ -51,12 +52,24 @@ flex; justify-content: center; align-items: center; position: relative;">
 
 </div>
 
+
+  <%# -------------------- Button add comment ------------------------------- %>
+
+<div class="btn btn-primary" style="width:200px">
+  <%= link_to "Add a comment/rating", new_recipe_comment_path(@recipe) %>
+</div>
+
+
+  <%# -------------------- Button delete ------------------------------------ %>
+
  <%= button_to "",
           bookmark_path(@bookmark),
           method: :delete,
           data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
           class: "btn btn--light fa-regular fa-trash-can"%>
-  <%# -------------------- Button back home ------------------ %>
+
+
+  <%# -------------------- Button back home --------------------------------- %>
 
 <div class="d-flex justify-content-center mt-5">
   <%= link_to bookmarks_path, class: "d-flex justify-content-center" do %>

@@ -8,25 +8,51 @@
 </div>
 
 
-  <%# ----------TO REPLACE WITH ACTUAL DATA---------- %>
+  <%# ---------- Recipe details---------- %>
 
-<div class="border mx-3 p-3">
+<div class="border mx-3 p-3 mb-3">
   <h3><strong><%= @recipe.title %></strong></h3>
   <p>Prep-time : <%= @recipe.prep_time %></p>
   <p>Servings : <%= @recipe.servings %></p>
 </div>
 
+<div class="border mx-3 p-3">
+  <p>Your last rating : <%= @recipe.rating %> / 5</p>
+
+  <p>Your comments :</p>
+
+  <% if @comments.any? %>
+    <ul>
+      <% @comments.each do |comment| %>
+        <li>
+          <strong><%= comment.created_at.strftime("%d %b %Y, %H:%M") %></strong> :
+          <%= comment.content %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No comment for this recipe.</p>
+  <% end %>
+</div>
 
   <%# -------------------- Comment ------------------ %>
 
 <div class="d-flex justify-content-between">
 
   <div data-controller="toggle" class="m-3">
-    <button data-action="click->toggle#fire" class="btn btn-outline-primary">Write comment and rate</button>
+    <button data-action="click->toggle#fire" class="btn btn-outline-primary">Write comment</button>
     <div data-toggle-target="togglableElement" class="d-none">
       <%= render "form", comment: @comment %>
     </div>
   </div>
+
+
+  <%# <div data-controller="toggle" class="m-3">
+    <button data-action="click->toggle#fire" class="btn btn-outline-primary">Rate</button>
+    <div data-toggle-target="togglableElement" class="d-none">
+      <%= render "form_rating", comment: @comment %>
+    <%# </div>
+  </div> %>
 
 
   <%# -------------------- Share ------------------ %>

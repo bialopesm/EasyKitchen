@@ -1,3 +1,5 @@
+<%# Comment form %>
+
 <%= form_with model: comment,
               url: recipe_comments_path(comment.recipe),
               method: :post,
@@ -13,12 +15,19 @@
                         rows: 3 %>
   </div>
 
-  <div class="my-3">
-    <%= form.label :rating, "Rate this recipe", class: "form-label" %>
-    <%= form.select :rating, (1..5).to_a, {},
-          data: { controller: "star-rating", action: "click->submit#submit" },
-          class: "form-select" %>
-  </div>
+
+  <%# Rating %>
+
+<div class="my-3">
+  <%= form.label :rating, "Rate this recipe", class: "form-label" %>
+  <%= form.select :rating, (1..5).to_a, {},
+        data: { controller: "star-rating", action: "click->submit#submit" },
+        class: "form-select",
+        name: "recipe[rating]" %>
+</div>
+
+
+  <%# Save %>
 
   <%= form.submit "Save Comment", class: "btn btn-success" %>
 <% end %>
