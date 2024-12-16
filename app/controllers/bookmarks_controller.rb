@@ -22,6 +22,8 @@ class BookmarksController < ApplicationController
 
   def show
     @bookmark = Bookmark.find(params[:id])
+    @recipe = @bookmark.recipe
+    @comments = @recipe.comments
   end
 
   private
