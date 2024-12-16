@@ -58,6 +58,8 @@ class RecipesController < ApplicationController
     @recipe.instructions = params[:recipe_data]["Step-by-step"]
     @recipe.done = true
     @recipe.save
+    @bookmark = Bookmark.new(user: current_user, recipe: @recipe)
+    @bookmark.save
     # No need for app/views/recipes/create.html.erb
     redirect_to new_recipe_comment_path(@recipe)
   end
