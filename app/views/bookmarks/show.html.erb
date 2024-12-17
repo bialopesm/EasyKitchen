@@ -75,15 +75,17 @@ flex; justify-content: center; align-items: center; position: relative;">
 
   <%# -------------------- Button add comment ------------------------------- %>
 
-<div class="btn btn-primary" style="width:200px">
-  <%= link_to "Add a comment/rating", new_recipe_comment_path(@recipe) %>
-</div>
+<div class="d-flex justify-content-center gap-2">
+  <div class="btn btn-primary rounded-pill" style="width: 200px;">
+    <%= link_to "Add a comment/rating", new_recipe_comment_path(@recipe), class: "text-white text-decoration-none" %>
+  </div>
 
 
   <%# -------------------- Button delete ------------------------------------ %>
 
-    <%= button_to "Delete this recipe",
-              bookmark_path(@bookmark),
-              method: :delete,
-              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-              class: "btn btn-danger"%>
+     <%= button_to "Delete this recipe",
+                bookmark_path(@bookmark),
+                method: :delete,
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "btn btn-danger rounded-pill" %>
+</div>
