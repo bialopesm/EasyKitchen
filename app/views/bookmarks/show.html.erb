@@ -17,12 +17,16 @@ flex; justify-content: center; align-items: center; position: relative;">
 <div class="border m-3 p-3">
 
   <% if @bookmark.recipe.present? %>
-    <h2><strong>Recipe title:</strong> <%= @bookmark.recipe.title %></h2>
+    <h2><strong><%= @bookmark.recipe.title %></strong></h2>
 
     <p><strong>Preparation time:</strong> <%= @bookmark.recipe.prep_time %></p>
     <p><strong>Servings:</strong> <%= @bookmark.recipe.servings %></p>
-    <p><strong>Step-by-step:</strong></p><pre><%= @bookmark.recipe.instructions
-     %></pre>
+    <p><strong>Step-by-step:</strong></p>
+    <ul>
+    <% @bookmark.recipe.instructions.split(/\n/).each do |instruction|%>
+      <li> <%=instruction %></li>
+    <% end %>
+    </ul>
     <p><strong>Rating :</strong> <%= @bookmark.recipe.rating %>/5</p>
   <% else %>
     <p>No recipe data available.</p>
