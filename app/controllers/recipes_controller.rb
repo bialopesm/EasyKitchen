@@ -86,7 +86,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     # No need for app/views/recipes/update.html.erb
-    redirect_to recipe_path(@recipe)
+    redirect_to new_recipe_comment_path(@recipe)
   end
 
   private

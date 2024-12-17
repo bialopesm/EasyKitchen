@@ -1,4 +1,4 @@
-  <%# ------------------ Header -------------------- %>
+  <%# ------------------------ Header --------------------------------------- %>
 
 <div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
   <%= link_to request.referer, style: "position: absolute; left: 20px;" do %>
@@ -8,7 +8,7 @@
 </div>
 
 
-  <%# ---------- Recipe details---------- %>
+  <%# -------------------- Recipe details------------------------------------ %>
 
 <div class="border mx-3 p-3 mb-3">
   <h3><strong><%= @recipe.title %></strong></h3>
@@ -35,27 +35,27 @@
   <% end %>
 </div>
 
-  <%# -------------------- Comment ------------------ %>
+
+  <%# --------------------------- Comment ----------------------------------- %>
 
 <div class="d-flex justify-content-between">
 
   <div data-controller="toggle" class="m-3">
     <button data-action="click->toggle#fire" class="btn btn-outline-primary">Write comment</button>
     <div data-toggle-target="togglableElement" class="d-none">
-      <%= render "form", comment: @comment %>
+      <%= render "form", comment: @comment, recipe: @recipe %>
     </div>
   </div>
 
 
-  <%# <div data-controller="toggle" class="m-3">
-    <button data-action="click->toggle#fire" class="btn btn-outline-primary">Rate</button>
-    <div data-toggle-target="togglableElement" class="d-none">
-      <%= render "form_rating", comment: @comment %>
-    <%# </div>
-  </div> %>
+  <%# ---------------------- Rate ------------------------------------------- %>
 
+<div class="m-3">
+  <h4>Rate This Recipe</h4>
+  <%= render "form_rating", recipe: @recipe %>
+</div>
 
-  <%# -------------------- Share ------------------ %>
+  <%# ----------------------- Share ----------------------------------------- %>
 
   <div class="mt-3 me-3">
     <button id="share-button" class="btn btn-outline-primary" data-url="<%= recipe_url(@comment.recipe) %>">Share recipe</button>
@@ -66,7 +66,7 @@
 
   <%# --------------- Back to home page --------------- %>
 
-    <%= link_to "Skip to home page", erase_path, class: "btn btn-dark rounded-pill mx-5" %>
+    <%= link_to "Back to home page", erase_path, class: "btn btn-dark rounded-pill mx-5" %>
 
 
   <%# -------------------- Script ------------------ %>
