@@ -14,10 +14,12 @@
   <body class="<%= user_signed_in? ? 'logged' : 'unlogged' %>">
 
     <% if user_signed_in? %>
-        <main class="d-flex flex-column justify-content-between">
-          <%= yield %>
-          <%= render "layouts/footer" %>
-        </main>
+      <div class="page-container">
+         <div class="content-container"><%= yield %>
+         </div>
+         <div class="footer-container"><%= render "layouts/footer" %>
+         </div>
+        </div>
     <% else %>
         <%= yield %>
     <% end %>

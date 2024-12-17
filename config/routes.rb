@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "/erase", to: "recipes#erase"
 
   resources :ingredients
-  resources :recipes, only: [:index, :show, :new, :create] do
+  resources :recipes, only: [:index, :show, :new, :create, :update] do
     resources :comments, only: [:new, :create, :destroy]
   end
 

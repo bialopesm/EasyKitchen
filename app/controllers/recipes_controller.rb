@@ -49,8 +49,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
-    @comments = @recipe.comments
   end
 
   def erase
@@ -71,7 +69,7 @@ class RecipesController < ApplicationController
     @recipe.prep_time = params[:recipe_data]["Preparation time"]
     @recipe.servings = params[:recipe_data]["Servings"]
     @recipe.instructions = params[:recipe_data]["Step-by-step"]
-    @recipe.done = true
+    @recipe.done = params[:done] || false
     @recipe.save
     @bookmark = Bookmark.new(user: current_user, recipe: @recipe)
     @bookmark.save
@@ -87,7 +85,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     # No need for app/views/recipes/update.html.erb
-    redirect_to recipe_path(@recipe)
+    redirect_to new_recipe_comment_path(@recipe)
   end
 
   private
