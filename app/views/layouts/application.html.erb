@@ -14,10 +14,10 @@
   <body>
 
 
-  <main class="d-flex flex-column justify-content-between">
-    <%= yield %>
-    <%= render "layouts/footer" %>
-  </main>
+  <div class="page-container">
+    <div class="content-container"><%= yield %></div>
+    <div class="footer-container"><%= render "layouts/footer" %></div>
+  </div>
 
 
   </body>
