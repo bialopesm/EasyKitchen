@@ -24,14 +24,25 @@
   <%# -------------------- Buttons ------------------ %>
 
 <div class="d-flex justify-content-center">
-<%= button_to 'I did it', {:controller => "recipes", :action => "create", :recipe_data => params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step")} , :method=>:post, class: "btn btn-success mx-1"  %>
+
+<%= button_to 'I did it',
+  { controller: "recipes",
+    action: "create",
+    recipe_data: params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step"),
+    done: true }, # Passing done: true here
+  method: :post,
+  class: "btn btn-success mx-1",
+  data: { turbo: true } %>
 
 
 
-<%# <%= link_to "Save it for later", ingredients_path, class: "btn btn-dark mx-1" %>
-<%= link_to 'Save it for later', {:controller => "recipes", :action => "create",
-                                    :recipe_data => params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step")} ,
-                                    :method=>:post,
-                                    class: "btn btn-success mx-1",
-                                    data: { turbo: true } %>
+<%= button_to 'Save it for later',
+  { controller: "recipes",
+    action: "create",
+    recipe_data: params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step"),
+    done: false }, # Adding done parameter with value false
+  method: :post,
+  class: "btn btn-success mx-1",
+  data: { turbo: true } %>
+
 </div>
