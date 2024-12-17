@@ -31,6 +31,19 @@ flex; justify-content: center; align-items: center; position: relative;">
 </div>
 
 
+  <%# -------------------- Button "I did it"------------------ %>
+
+  <% if @recipe.done == false %>
+    <%= button_to 'I did it',
+      { controller: "recipes",
+        action: "update",
+        id: @recipe.id,
+        recipe: { done: true } },
+      method: :patch,
+      class: "btn btn-success mx-1",
+      data: { turbo: true } %>
+  <% end %>
+
   <%# -------------------- Comment ------------------------------------------ %>
 
 <div class="border mx-3 mb-3 p-3">
