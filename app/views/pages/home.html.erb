@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="text-center mt-4">
+  <h1 class="display-4 font-weight-bold text-white">EasyKitchen</h1>
+</div>
+
+<div class="container-home d-flex flex-column justify-content-center align-items-center text-center">
+  <h1 class="display-4 font-weight-bold">Find a recipe with what you have on your fridge</h1>
+  <%= link_to "Cook now!", new_user_session_path, class: "btn btn-info btn-lg rounded-pill" %>
+</div>
+
+<footer class="text-center w-100" style="bottom: 3px; margin-top: -50px; font-size: 17px;">
+  <small>Powered by AI to make your life easier</small>
+</footer>

@@ -1,1 +1,47 @@
 // Specific CSS for your home-page
+.unlogged, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.unlogged {
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('robot-cooking.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6), -5px -5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.container-home {
+  font-weight: 1000;
+  text-align: center;
+  padding-top: 250px;
+  padding-bottom: 20px;
+  width: 100%;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  left: 0;
+  margin: 0;
+  padding: 10px 0;
+}
