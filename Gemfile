@@ -56,6 +56,7 @@ gem "ruby-openai"
 
 gem "solid_queue"
 
+gem 'activerecord-session_store'
 
 group :development, :test do
   gem "dotenv-rails"

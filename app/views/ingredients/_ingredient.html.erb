@@ -15,7 +15,8 @@
         <%= button_to "",
           ingredient_path(ingredient),
           method: :delete,
-          class: "btn btn--light fa-regular fa-trash-can" %>
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+          class: "btn btn--light fa-regular fa-trash-can"%>
         <%= link_to "",
           edit_ingredient_path(ingredient),
           class: "btn btn--light fa-regular fa-pen-to-square ms-2" %>

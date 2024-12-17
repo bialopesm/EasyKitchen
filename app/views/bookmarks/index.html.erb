@@ -19,7 +19,7 @@
 
 <%# ---------------- Body --------------------------------------------------- %>
 
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3" style="height: 80vh">
   <div class="card mx-auto shadow" style="max-width: 600px; border-radius: 24px; background-color:#f29006; opacity: 0.5;">
     <div class="card-body">
       <h2 class="text-center mb-3">My History</h2>
@@ -38,41 +38,22 @@
         </div> %>
 
 
-  <%# <div class="container d-flex justify-content-center">
-    <div class="d-flex w-50">
-      <input type="hidden" name="search_param" value="all" id="search_param">
-      <input type="text" class="form-control" name="x" placeholder="Search a recipe" style="flex-grow: 1;">
-      <button id="search-button" type="button" class="btn btn-primary">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
-  </div>
-        </div> %>
+<%# ---------------- History list ------------------------------------------- %>
 
-  <input type="text" id="recipeList" onkeyup="myFunction()" placeholder="Search for recipes..">
+      <input type="text" id="recipeList" onkeyup="myFunction()" placeholder="Search for recipes..">
 
-  <ul id="mytestUL">
-    <li class="mb-3"><a href="#">Mc and Cheese</a></li>
-    <li class="mb-3"><a href="#">Chicken Nuggets</a></li>
+      <ul id="mytestUL">
+          <% if @bookmarks.present? %>
+            <% @bookmarks.each do |bookmark| %>
+            <li class="mb-3"><%= link_to bookmark.recipe.title, bookmark_path(bookmark), class: 'btn btn-link' %></li>
+            <% end %>
+          <% else %>
+            <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+              <p class="card-text">No Recipes marked yet.</p>
+            </div>
+          <% end %>
+      </ul>
 
-    <li class="mb-3"><a href="#">Tomato soup</a></li>
-    <li class="mb-3"><a href="#">Chicken curry</a></li>
-
-    <li class="mb-3"><a href="#">Rice and beans</a></li>
-    <li class="mb-3"><a href="#">Puree</a></li>
-    <li class="mb-3"><a href="#">Banana split</a></li>
-  </ul>
-
-      <% if @bookmarks.present? %>
-        <% @bookmarks.each do |bookmark| %>
-          <p class="card-text">Recipe: <%= bookmark.recipe.title %></p>
-          <%= link_to 'Show Recipe', recipe_path(bookmark.recipe), class: 'btn btn-link' %> |
-        <% end %>
-      <% else %>
-        <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
-          <p class="card-text">No Recipes marked yet.</p>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>

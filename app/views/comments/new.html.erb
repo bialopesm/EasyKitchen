@@ -1,29 +1,39 @@
   <%# ------------------ Header -------------------- %>
 
 <div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
-  <%= link_to ingredients_path, style: "position: absolute; left: 20px;" do %>
+  <%= link_to request.referer, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
   <% end %>
   <h1 class="text-center" style="margin: 0;">COMMENT / SHARE</h1>
 </div>
 
 
-  <%# ----------TO REPLACE WITH ACTUAL DATA---------- %>
+  <%# ---------- Recipe details---------- %>
 
-<div class="border mx-3 p-3">
-  <div class="mb-3">
-    <i class="fa-regular fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-  </div>
-<h3><strong>Recipe title</strong></h3>
-<p>You used X ingredients from your fridge to prepare this recipe !</p>
-<p>Prep-time : prep_time</p>
-<p>Servings : servings</p>
+<div class="border mx-3 p-3 mb-3">
+  <h3><strong><%= @recipe.title %></strong></h3>
+  <p>Prep-time : <%= @recipe.prep_time %></p>
+  <p>Servings : <%= @recipe.servings %></p>
 </div>
 
+<div class="border mx-3 p-3">
+  <p>Your last rating : <%= @recipe.rating %> / 5</p>
+
+  <p>Your comments :</p>
+
+  <% if @comments.any? %>
+    <ul>
+      <% @comments.each do |comment| %>
+        <li>
+          <strong><%= comment.created_at.strftime("%d %b %Y, %H:%M") %></strong> :
+          <%= comment.content %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No comment for this recipe.</p>
+  <% end %>
+</div>
 
   <%# -------------------- Comment ------------------ %>
 
@@ -37,6 +47,14 @@
   </div>
 
 
+  <%# <div data-controller="toggle" class="m-3">
+    <button data-action="click->toggle#fire" class="btn btn-outline-primary">Rate</button>
+    <div data-toggle-target="togglableElement" class="d-none">
+      <%= render "form_rating", comment: @comment %>
+    <%# </div>
+  </div> %>
+
+
   <%# -------------------- Share ------------------ %>
 
   <div class="mt-3 me-3">
@@ -48,7 +66,7 @@
 
   <%# --------------- Back to home page --------------- %>
 
-    <%= link_to "Skip to home page", bookmarks_path, class: "btn btn-dark rounded-pill mx-5" %>
+    <%= link_to "Skip to home page", erase_path, class: "btn btn-dark rounded-pill mx-5" %>
 
 
   <%# -------------------- Script ------------------ %>

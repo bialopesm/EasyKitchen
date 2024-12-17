@@ -27,7 +27,13 @@ class RecipesController < ApplicationController
     response_content = chatgpt_response["choices"][0]["message"]["content"]
     # Rails.logger.info "Response Content: #{response_content}"
 
-    @recipes_from_gpt = extract_recipes(response_content)
+    if session[:recipes].present?
+      @recipes_from_gpt = session[:recipes]
+    else
+      @recipes_from_gpt = extract_recipes(response_content)
+      session[:recipes] = @recipes_from_gpt
+    end
+
 
     # @recipe.title = @recipe_from_gpt["Recipe title"]
     # @recipe.prep_time = @recipe_from_gpt["Preparation time"]
@@ -43,8 +49,17 @@ class RecipesController < ApplicationController
   end
 
   def show
-    # @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:id])
+    @comments = @recipe.comments
+  end
 
+  def erase
+    @ingredients = current_user.ingredients
+    @ingredients.each do |ingredient|
+      ingredient.destroy
+    end
+    session.delete(:recipes)
+    redirect_to bookmarks_path
   end
 
 
@@ -58,6 +73,8 @@ class RecipesController < ApplicationController
     @recipe.instructions = params[:recipe_data]["Step-by-step"]
     @recipe.done = true
     @recipe.save
+    @bookmark = Bookmark.new(user: current_user, recipe: @recipe)
+    @bookmark.save
     # No need for app/views/recipes/create.html.erb
     redirect_to new_recipe_comment_path(@recipe)
   end

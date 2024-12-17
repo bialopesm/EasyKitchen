@@ -1,8 +1,34 @@
-<%= form_with model: comment, url: recipe_comments_path(comment.recipe), method: :post do |form| %>
+<%# Comment form %>
+
+<%= form_with model: comment,
+              url: recipe_comments_path(comment.recipe),
+              method: :post,
+              remote: true,
+              data: { controller: "form-submit" } do |form| %>
+
   <div class="my-3">
-    <%= form.label :content, "Your Comment", class: "form-label" %>
-    <%= form.text_area :content, class: "form-control", rows: 3 %>
+
+    <%= form.label :content, "Your Comment",
+                    class: "form-label" %>
+
+    <%= form.text_area :content,
+                        class: "form-control",
+                        rows: 3 %>
   </div>
+
+
+  <%# Rating %>
+
+<div class="my-3">
+  <%= form.label :rating, "Rate this recipe", class: "form-label" %>
+  <%= form.select :rating, (1..5).to_a, {},
+        data: { controller: "star-rating", action: "click->submit#submit" },
+        class: "form-select",
+        name: "recipe[rating]" %>
+</div>
+
+
+  <%# Save %>
 
   <%= form.submit "Save Comment", class: "btn btn-success" %>
 <% end %>
