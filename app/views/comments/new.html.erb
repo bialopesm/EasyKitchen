@@ -43,11 +43,11 @@
 
   <div class="d-flex justify-content-between">
 
-    <div data-controller="toggle" class="m-3">
-      <button data-action="click->toggle#fire" class="btn btn-outline-primary">Write comment</button>
-      <div data-toggle-target="togglableElement" class="d-none">
-        <%= render "form", comment: @comment, recipe: @recipe %>
-      </div>
+
+  <div data-controller="toggle" class="m-3">
+    <button data-action="click->toggle#fire" class="btn btn-outline-primary rounded-pill">Write comment</button>
+    <div data-toggle-target="togglableElement" class="d-none">
+      <%= render "form", comment: @comment, recipe: @recipe %>
     </div>
 
 
@@ -63,7 +63,7 @@
   <%# ----------------------- Share ----------------------------------------- %>
 
   <div class="mt-3 me-3">
-    <button id="share-button" class="btn btn-outline-primary" data-url="<%= recipe_url(@comment.recipe) %>">Share recipe</button>
+    <button id="share-button" class="btn btn-outline-primary rounded-pill" data-url="<%= recipe_url(@comment.recipe) %>">Share recipe</button>
   </div>
 
 </div>
