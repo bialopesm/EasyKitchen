@@ -55,6 +55,7 @@ gem "sassc-rails"
 gem "ruby-openai"
 
 gem "solid_queue"
+gem "solid_cable"
 
 gem 'activerecord-session_store'
 
