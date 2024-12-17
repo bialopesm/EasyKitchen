@@ -17,12 +17,16 @@ flex; justify-content: center; align-items: center; position: relative;">
 <div class="border m-3 p-3">
 
   <% if @bookmark.recipe.present? %>
-    <h2><strong>Recipe title:</strong> <%= @bookmark.recipe.title %></h2>
+    <h2><strong><%= @bookmark.recipe.title %></strong></h2>
 
     <p><strong>Preparation time:</strong> <%= @bookmark.recipe.prep_time %></p>
     <p><strong>Servings:</strong> <%= @bookmark.recipe.servings %></p>
-    <p><strong>Step-by-step:</strong></p><pre><%= @bookmark.recipe.instructions
-     %></pre>
+    <p><strong>Step-by-step:</strong></p>
+    <ul>
+    <% @bookmark.recipe.instructions.split(/\n/).each do |instruction|%>
+      <li> <%=instruction %></li>
+    <% end %>
+    </ul>
     <p><strong>Rating :</strong> <%= @bookmark.recipe.rating %>/5</p>
   <% else %>
     <p>No recipe data available.</p>
@@ -30,6 +34,19 @@ flex; justify-content: center; align-items: center; position: relative;">
 
 </div>
 
+
+  <%# -------------------- Button "I did it"------------------ %>
+
+  <% if @recipe.done == false %>
+    <%= button_to 'I did it',
+      { controller: "recipes",
+        action: "update",
+        id: @recipe.id,
+        recipe: { done: true } },
+      method: :patch,
+      class: "btn btn-success mx-1",
+      data: { turbo: true } %>
+  <% end %>
 
   <%# -------------------- Comment ------------------------------------------ %>
 
@@ -58,15 +75,17 @@ flex; justify-content: center; align-items: center; position: relative;">
 
   <%# -------------------- Button add comment ------------------------------- %>
 
-<div class="btn btn-primary" style="width:200px">
-  <%= link_to "Add a comment/rating", new_recipe_comment_path(@recipe) %>
-</div>
+<div class="d-flex justify-content-center gap-2">
+  <div class="btn btn-primary rounded-pill" style="width: 200px;">
+    <%= link_to "Add a comment/rating", new_recipe_comment_path(@recipe), class: "text-white text-decoration-none" %>
+  </div>
 
 
   <%# -------------------- Button delete ------------------------------------ %>
 
-    <%= button_to "Delete this recipe",
-              bookmark_path(@bookmark),
-              method: :delete,
-              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-              class: "btn btn-danger"%>
+     <%= button_to "Delete this recipe",
+                bookmark_path(@bookmark),
+                method: :delete,
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "btn btn-danger rounded-pill" %>
+</div>

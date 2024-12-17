@@ -4,7 +4,10 @@ class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :destroy]
 
   def index
-    @bookmarks = current_user.bookmarks.includes(:recipe).order('recipes.id DESC')
+    @bookmarks = current_user.bookmarks.joins(:recipe).order('recipes.id DESC')
+    if params[:done].present?
+      @bookmarks = @bookmarks.where(recipes: { done: params[:done] })
+    end
   end
 
   def show

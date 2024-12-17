@@ -11,14 +11,18 @@
     <link rel="stylesheet" href="https://ga.jspm.io/npm:star-rating.js@4.3.0/dist/star-rating.css">
   </head>
 
-  <body>
+  <body class="<%= user_signed_in? ? 'logged' : 'unlogged' %>">
 
-
-  <main class="d-flex flex-column justify-content-between">
-    <%= yield %>
-    <%= render "layouts/footer" %>
-  </main>
-
+    <% if user_signed_in? %>
+      <div class="page-container">
+         <div class="content-container"><%= yield %>
+         </div>
+         <div class="footer-container"><%= render "layouts/footer" %>
+         </div>
+        </div>
+    <% else %>
+        <%= yield %>
+    <% end %>
 
   </body>
 </html>
