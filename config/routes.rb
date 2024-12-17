@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  authenticated :user do
+    root "bookmarks#index", as: :authenticated_root
+  end
 
-  root "bookmarks#index"
+  root "pages#home"
+
   get "/erase", to: "recipes#erase"
 
   resources :ingredients
