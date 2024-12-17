@@ -1,4 +1,4 @@
-<div class="h-100 mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
+<div class="h-100 mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
 
   <%= link_to bookmarks_path, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
@@ -8,30 +8,32 @@
 
 </div>
 
+
 <div class="container-fluid" style="height: 80vh">
 
   <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/lunch.jpg)">
     <h2>Your ingredients</h2>
   </div>
 
-<div>
-  <%= link_to "+ ingredient",
-      new_ingredient_path,
-      class: "btn btn-primary my-3 rounded-pill box-shadow",
-      data: { turbo_frame: dom_id(Ingredient.new) },
-      style: "opacity: 0.8;" %>
-</div>
-
-  <%= turbo_frame_tag Ingredient.new %>
-
-  <%= turbo_frame_tag "ingredients" do %>
-    <%= render @ingredients %>
-  <% end %>
-
-
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <div data-controller="recipe-request" class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 0.8;">
-      <%= link_to "Create a recipe", recipes_path, data: {action: "click->recipe-request#handleClick"} %>
+  <div class="card-ingredients">
+    <div>
+      <%= link_to "+ ingredient",
+          new_ingredient_path,
+          class: "btn btn-primary my-3 rounded-pill box-shadow",
+          data: { turbo_frame: dom_id(Ingredient.new) },
+          style: "opacity: 0.8;" %>
     </div>
+
+    <%= turbo_frame_tag Ingredient.new %>
+
+    <%= turbo_frame_tag "ingredients" do %>
+      <%= render @ingredients %>
+    <% end %>
   </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div data-controller="recipe-request" class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 0.8;">
+        <%= link_to "Create a recipe", recipes_path, data: {action: "click->recipe-request#handleClick"} %>
+      </div>
+    </div>
 </div>
