@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :show, :new, :create] do
     resources :comments, only: [:new, :create, :destroy]
   end
+
+  resources :recipes do
+    resources :comments, only: [:create, :destroy]
+  end
+
   resources :comments, only: [:destroy]
   resources :bookmarks, only: [:index, :new, :create, :show, :destroy]
 end

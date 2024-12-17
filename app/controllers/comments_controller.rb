@@ -24,6 +24,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_back fallback_location: recipe_path(@comment.recipe), notice: "Comment was deleted."
+  end
+
   private
 
   def comment_params
