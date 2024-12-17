@@ -13,11 +13,13 @@
 
   <%# -------------------- Display recipe ------------------ %>
 
-<div class="border m-3">
+<div class="border m-3 p-3">
   <p><strong>Recipe title:</strong> <%= params["recipe"]["Recipe title"] %></p>
   <p><strong>Preparation time:</strong> <%= params["recipe"]["Preparation time"] %></p>
   <p><strong>Servings:</strong> <%= params["recipe"]["Servings"]%></p>
-  <p><strong>Step-by-step:</strong></p><pre><%= params["recipe"]["Step-by-step"] %></pre>
+  <p><strong>Step-by-step:</strong></p><% params["recipe"]["Step-by-step"].split(/\n/).each do |instruction| %>
+        <li> <%=instruction %></li>
+    <% end %>
 </div>
 
 
