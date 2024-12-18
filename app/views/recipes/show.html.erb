@@ -1,6 +1,6 @@
   <%# -------------------- Header ------------------ %>
 
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative;">
 
   <%= link_to recipes_path, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
@@ -13,7 +13,7 @@
 
   <%# -------------------- Display recipe ------------------ %>
 
-<div class="border m-3 p-3">
+<div class="border m-3 p-3 bg-light">
   <p><strong>Recipe title:</strong> <%= params["recipe"]["Recipe title"] %></p>
   <p><strong>Preparation time:</strong> <%= params["recipe"]["Preparation time"] %></p>
   <p><strong>Servings:</strong> <%= params["recipe"]["Servings"]%></p>

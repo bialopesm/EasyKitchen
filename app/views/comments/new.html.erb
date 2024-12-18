@@ -1,6 +1,6 @@
   <%# ------------------------ Header --------------------------------------- %>
 
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative;">
   <%= link_to request.referer, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
   <% end %>
@@ -9,7 +9,7 @@
 
   <%# -------------------- Recipe details------------------------------------ %>
 
-<div class="border mx-3 p-3 mb-3">
+<div class="border mx-3 p-3 mb-3 bg-light">
   <h3><strong><%= @recipe.title %></strong></h3>
   <p>Prep-time : <%= @recipe.prep_time %></p>
   <p>Servings : <%= @recipe.servings %></p>
@@ -17,7 +17,7 @@
 
 
 <div data-controller="insert-in-list">
-  <div class="border mx-3 p-3">
+  <div class="border mx-3 p-3 bg-light">
     <p>Your last rating : <%= @recipe.rating %> / 5</p>
     <p>Your comments :</p>
     <% if @comments.any? %>
@@ -38,7 +38,7 @@
 
   <div class="d-flex justify-content-between">
     <%# ---------------------- Rate ------------------------------------------- %>
-    <div class="m-3">
+    <div class="m-3 bg-light">
       <h4>Rate This Recipe</h4>
       <%= render "form_rating", recipe: @recipe %>
     </div>
