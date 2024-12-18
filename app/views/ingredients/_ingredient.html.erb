@@ -1,13 +1,13 @@
 <div class="row">
 
   <%= turbo_frame_tag "ingredient_#{ingredient.id}" do %>
-    <div class="ingredient border mb-1 p-2 d-flex align-items-center justify-content-between">
+    <div class="ingredient mb-1 p-2 d-flex align-items-center justify-content-between" style="border-bottom: 1px solid #DEE2E6;">
 
-      <div class="ingredient-name border p-1" style="min-width: 75px;">
+      <div class="badge rounded-pill badge-custom" style="min-width: 100px;">
         <%= ingredient.name %>
       </div>
 
-      <div class="ingredient-quantity border p-1 text-center mx-auto" style="width: 50px; display: flex; align-items: center; justify-content: center;">
+      <div class="badge rounded-pill badge-light" style="width: 50px; display: flex; align-items: center; justify-content: center;">
         <%= ingredient.quantity %> <%= ingredient.unit %>
       </div>
 
