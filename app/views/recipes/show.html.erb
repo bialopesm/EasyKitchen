@@ -1,6 +1,6 @@
   <%# -------------------- Header ------------------ %>
 
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative;">
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
 
   <%= link_to recipes_path, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
@@ -33,7 +33,7 @@
     recipe_data: params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step"),
     done: true },
   method: :post,
-  class: "btn btn-success mx-1",
+  class: "btn btn-success mx-1 rounded-pill",
   data: { turbo: true } %>
 
 
@@ -44,6 +44,6 @@
     recipe_data: params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step"),
     done: false },
   method: :post,
-  class: "btn btn-success mx-1" %>
+  class: "btn btn-success mx-1 rounded-pill" %>
 
 </div>
