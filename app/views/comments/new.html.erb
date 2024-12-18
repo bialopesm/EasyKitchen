@@ -9,15 +9,15 @@
 
   <%# -------------------- Recipe details------------------------------------ %>
 
-<div class="border mx-3 p-3 mb-3">
-  <h3><strong><%= @recipe.title %></strong></h3>
+<div class="border mx-3 p-3 mb-3" style="border-radius: 15px !important">
+  <p><strong><%= @recipe.title %></strong></p>
   <p>Prep-time : <%= @recipe.prep_time %></p>
   <p>Servings : <%= @recipe.servings %></p>
 </div>
 
 
 <div data-controller="insert-in-list">
-  <div class="border mx-3 p-3">
+  <div class="border mx-3 p-3" style="border-radius: 15px !important">
     <p>Your last rating : <%= @recipe.rating %> / 5</p>
     <p>Your comments :</p>
     <% if @comments.any? %>
