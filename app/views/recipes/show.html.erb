@@ -31,7 +31,7 @@
   { controller: "recipes",
     action: "create",
     recipe_data: params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step"),
-    done: true }, # Passing done: true here
+    done: true },
   method: :post,
   class: "btn btn-success mx-1",
   data: { turbo: true } %>
@@ -42,9 +42,8 @@
   { controller: "recipes",
     action: "create",
     recipe_data: params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step"),
-    done: false }, # Adding done parameter with value false
+    done: false },
   method: :post,
-  class: "btn btn-success mx-1",
-  data: { turbo: true } %>
+  class: "btn btn-success mx-1" %>
 
 </div>
