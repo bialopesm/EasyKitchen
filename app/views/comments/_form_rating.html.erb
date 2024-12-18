@@ -2,10 +2,11 @@
 
 <div class="my-3">
   <%= form.select :rating, (1..5).to_a, {},
-        data: { controller: "star-rating", action: "click->submit#submit" },
+        data: { controller: "star-rating", action: "change->form-submit#submit" },
+        # data: { controller: "star-rating", action: "click->submit#submit" },
         class: "form-select",
         name: "recipe[rating]" %>
 </div>
 
-  <%= form.submit "Rate !", class: "btn btn-success rounded-pill" %>
+  <%#= form.submit "Rate !", class: "btn btn-success rounded-pill" %>
 <% end %>

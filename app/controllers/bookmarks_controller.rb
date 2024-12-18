@@ -22,6 +22,18 @@ class BookmarksController < ApplicationController
     redirect_to bookmarks_path, notice: "Recipe removed."
   end
 
+
+  def create
+
+    raise
+        # @bookmark = Bookmark.new(user: current_user, recipe: @recipe)
+
+    # if  @bookmark.save
+    #   flash[:alert]="Recipe saved in the history !"
+    #   redirect_to request.referer
+    # end
+  end
+
   private
 
   def set_bookmark

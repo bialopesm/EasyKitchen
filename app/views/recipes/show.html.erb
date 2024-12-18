@@ -1,6 +1,6 @@
   <%# -------------------- Header ------------------ %>
 
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative;">
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
 
   <%= link_to recipes_path, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
@@ -13,7 +13,7 @@
 
   <%# -------------------- Display recipe ------------------ %>
 
-<div class="border m-3 p-3 bg-light">
+<div class="border m-3 p-3 bg-light" style="border-radius: 15px !important">
   <p><strong>Recipe title:</strong> <%= params["recipe"]["Recipe title"] %></p>
   <p><strong>Preparation time:</strong> <%= params["recipe"]["Preparation time"] %></p>
   <p><strong>Servings:</strong> <%= params["recipe"]["Servings"]%></p>
@@ -31,9 +31,9 @@
   { controller: "recipes",
     action: "create",
     recipe_data: params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step"),
-    done: true }, # Passing done: true here
+    done: true },
   method: :post,
-  class: "btn btn-success mx-1",
+  class: "btn btn-success mx-1 rounded-pill",
   data: { turbo: true } %>
 
 
@@ -42,9 +42,8 @@
   { controller: "recipes",
     action: "create",
     recipe_data: params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step"),
-    done: false }, # Adding done parameter with value false
+    done: false },
   method: :post,
-  class: "btn btn-success mx-1",
-  data: { turbo: true } %>
+  class: "btn btn-success mx-1 rounded-pill" %>
 
 </div>

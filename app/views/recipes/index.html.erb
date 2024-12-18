@@ -1,4 +1,4 @@
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative;">
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
 
   <%= link_to ingredients_path, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
@@ -7,25 +7,26 @@
   <h1 class="text-center" style="margin: 0;">RECIPES SUGGESTIONS</h1>
 
 </div>
+    <div class="px-4 my-4">
+      <div class="accordion" id="recipeAccordion">
+        <!-- Recipes -->
+        <% @recipes_from_gpt.each_with_index do |recipe, index| %>
+          <div class="accordion-item border-top mb-3" style="border-radius: 15px !important" >
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button <%= 'collapsed' if index > 0 %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_<%= index %>" aria-expanded="true" aria-controls="collapseOne" style="border-radius: 15px !important">
+                <%= recipe["Recipe title"] %>
+              </button>
+            </h2>
+            <div id="collapse_<%= index %>" class="accordion-collapse collapse <%= 'show' if index < 1 %>" aria-labelledby="heading_<%= index %>" data-bs-parent="#recipeAccordion">
+              <div class="accordion-body">
+                  <p><strong>Ingredients:</strong> <%= recipe["Ingredients list"] %></p>
+                  <p><strong>Preparation Time:</strong> <%= recipe["Preparation time"] %></p>
 
-  <div class="accordion" id="recipeAccordion">
-    <!-- Recipes -->
-    <% @recipes_from_gpt.each_with_index do |recipe, index| %>
-    <div class="accordion-item border-top mb-3">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button  <%= 'collapsed' if index > 0 %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_<%= index %>" aria-expanded="true" aria-controls="collapseOne">
-          <%= recipe["Recipe title"] %>
-        </button>
-      </h2>
-      <div id="collapse_<%= index %>" class="accordion-collapse collapse <%= 'show' if index < 1 %>" aria-labelledby="heading_<%= index %>" data-bs-parent="#recipeAccordion">
-        <div class="accordion-body">
-            <p><strong>Ingredients:</strong> <%= recipe["Ingredients list"] %></p>
-            <p><strong>Preparation Time:</strong> <%= recipe["Preparation time"] %></p>
-
-          <%= link_to 'Let s do it!', recipe_path(1, recipe: recipe), class:"btn btn-success btn-sm" %>
-        </div>
+                <%= link_to 'Let s do it!', recipe_path(1, recipe: recipe), class:"btn btn-success btn-sm rounded-pill" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
-  </div>
 </div>

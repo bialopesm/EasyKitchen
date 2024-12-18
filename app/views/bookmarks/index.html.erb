@@ -1,20 +1,14 @@
 <%# ----------------------- Header ------------------------------------------ %>
 
-<div class="container-fluid mt-3">
+
   <div class="card d-flex flex-row align-items-center shadow" style="background-color: #FDFD96; opacity: 1; border-radius: 12px; padding: 10px;">
     <div class="d-flex justify-content-between align-items-center w-100">
-      <h5 class="text-center mx-auto">Welcome <%= current_user.email%></h5>
-
-        <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-        </div>
-
+      <div class="mb-3 p-5 navbar-lewagon" style="background-color: #a8d254; display: flex; justify-content: center; align-items: center; opacity: 0.8; position: relative; border-radius: 0 0 20px 20px;">
+        <h1 class="text-center" style="margin: 0;">Welcome to EasyKitchen <%= current_user.email%></h1>
+      </div>
     </div>
   </div>
-</div>
+
 
 
 <%# ---------------- Button New Meal ---------------------------------------- %>
