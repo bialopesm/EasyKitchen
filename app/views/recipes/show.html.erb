@@ -27,7 +27,7 @@
 
 <div class="d-flex justify-content-center">
 
-<%= button_to 'I did it',
+<%= button_to 'I did it!',
   { controller: "recipes",
     action: "create",
     recipe_data: params.require(:recipe).permit("Recipe title", "Preparation time", "Servings", "Step-by-step"),

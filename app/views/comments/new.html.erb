@@ -7,7 +7,6 @@
   <h1 class="text-center" style="margin: 0;">COMMENT / SHARE</h1>
 </div>
 
-
   <%# -------------------- Recipe details------------------------------------ %>
 
 <div class="border mx-3 p-3 mb-3">
@@ -18,12 +17,9 @@
 
 
 <div data-controller="insert-in-list">
-
   <div class="border mx-3 p-3">
     <p>Your last rating : <%= @recipe.rating %> / 5</p>
-
     <p>Your comments :</p>
-
     <% if @comments.any? %>
       <ul>
         <% @comments.each do |comment| %>
@@ -39,39 +35,40 @@
   </div>
 
 
-  <%# --------------------------- Comment ----------------------------------- %>
 
   <div class="d-flex justify-content-between">
-
-
-  <div data-controller="toggle" class="m-3">
-    <button data-action="click->toggle#fire" class="btn btn-outline-primary rounded-pill">Write comment</button>
-    <div data-toggle-target="togglableElement" class="d-none">
-      <%= render "form", comment: @comment, recipe: @recipe %>
+    <%# ---------------------- Rate ------------------------------------------- %>
+    <div class="m-3">
+      <h4>Rate This Recipe</h4>
+      <%= render "form_rating", recipe: @recipe %>
     </div>
 
+  <%# --------------------------- Comment ----------------------------------- %>
+    <div data-controller="toggle" class="m-3">
+      <button data-action="click->toggle#fire" class="border-0 bg-transparent">
+        <i class="fa-regular fa-message fs-1" style="cursor: pointer;"></i>
+      </button>
 
-  <%# ---------------------- Rate ------------------------------------------- %>
+      <div data-toggle-target="togglableElement" class="d-none">
+        <%= render "form", comment: @comment, recipe: @recipe %>
+      </div>
+    </div>
 
-  <div class="m-3">
-    <h4>Rate This Recipe</h4>
-    <%= render "form_rating", recipe: @recipe %>
+    <%# ----------------------- Share ----------------------------------------- %>
+
+    <div class="mt-3 me-3">
+        <button id="share-button" class="border-0 bg-transparent" data-url="<%= recipe_url(@comment.recipe) %>">
+          <i class="fa-solid fa-share-nodes fs-1"></i>
+        </button>
+      </div>
+
   </div>
 </div>
-
-
-  <%# ----------------------- Share ----------------------------------------- %>
-
-  <div class="mt-3 me-3">
-    <button id="share-button" class="btn btn-outline-primary rounded-pill" data-url="<%= recipe_url(@comment.recipe) %>">Share recipe</button>
-  </div>
-
-</div>
-
 
   <%# --------------- Back to home page --------------- %>
-
+<div class="d-flex justify-content-center">
     <%= link_to "Back to home page", erase_path, class: "btn btn-dark rounded-pill mx-5" %>
+</div>
 
 
   <%# -------------------- Script ------------------ %>
