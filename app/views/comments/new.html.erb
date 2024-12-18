@@ -18,7 +18,7 @@
 
 <div data-controller="insert-in-list">
   <div class="border mx-3 p-3" style="border-radius: 15px !important">
-    <p>Your last rating : <%= @recipe.rating %> / 5</p>
+    <p>Your last rating : <%= render "form_rating", recipe: @recipe %></p>
     <p>Your comments :</p>
     <% if @comments.any? %>
       <ul>
@@ -36,11 +36,7 @@
 
 
 
-  <div class="d-flex justify-content-between">
-    <%# ---------------------- Rate ------------------------------------------- %>
-    <div class="m-3">
-      <%= render "form_rating", recipe: @recipe %>
-    </div>
+  <div class="d-flex justify-content-end">
 
   <%# --------------------------- Comment ----------------------------------- %>
     <div data-controller="toggle" class="m-3">
@@ -64,7 +60,7 @@
   </div>
 </div>
 
-  <%# --------------- Back to home page --------------- %>
+  <%# ----------- Back to home page --------------- %>
 <div class="d-flex justify-content-center">
     <%= link_to "Back to home page", erase_path, class: "btn btn-dark rounded-pill mx-5" %>
 </div>
