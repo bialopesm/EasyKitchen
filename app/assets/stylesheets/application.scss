@@ -26,6 +26,16 @@
 @import "layouts/container";
 @import "layouts/header";
 
+/* Background Image for the Entire App */
+body {
+  background-image: image-url('background2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
 
 
 // This is for the styling of the footer navigation //

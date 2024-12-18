@@ -1,6 +1,6 @@
   <%# -------------------- Header ------------------ %>
 
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display:
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display:
 flex; justify-content: center; align-items: center; position: relative;">
 
   <%= link_to bookmarks_path, style: "position: absolute; left: 20px;" do %>
@@ -14,7 +14,11 @@ flex; justify-content: center; align-items: center; position: relative;">
 
   <%# -------------------- Recipe ------------------ %>
 
+<<<<<<< HEAD
+<div class="border m-3 p-3 bg-light">
+=======
 <div class="border m-3 p-3" style="border-radius: 15px !important">
+>>>>>>> master
 
   <% if @bookmark.recipe.present? %>
     <h2><strong><%= @bookmark.recipe.title %></strong></h2>
@@ -53,7 +57,7 @@ flex; justify-content: center; align-items: center; position: relative;">
 
   <%# -------------------- Comment ------------------------------------------ %>
 
-<div class="border mx-3 mb-3 p-3" style="border-radius: 15px !important">
+<div class="border mx-3 mb-3 p-3 bg-light" style="border-radius: 15px !important">
 
   <h2>Your comment :</h2>
 

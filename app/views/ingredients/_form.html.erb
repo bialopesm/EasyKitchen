@@ -3,14 +3,15 @@
   data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
 
   <div class="d-flex flex-wrap align-items-center">
-    <%= f.input :name, input_html: { class: "form-control", style: "flex: 1;" }, label: "Name" %>
+    <%= f.input :name, input_html: { class: "form-control", style: "flex: 1;" }, label: "Name", label_html: { class: "text-white" } %>
     <div class="me-3">
-      <%= f.input :quantity, input_html: { class: "form-control", style: "flex: 0.5;" }, label: "Quantity" %>
+      <%= f.input :quantity, input_html: { class: "form-control", style: "flex: 0.5;" }, label: "Quantity", label_html: { class: "text-white" } %>
     </div>
     <%= f.input :unit,
       collection: ["Unit","Kg", "g", "L", "mL"],
       include_blank: " ",
       label: "Unit",
+      label_html: { class: "text-white" },
       input_html: { class: "form-control", style: "flex: 0.75;" } %>
   </div>
 

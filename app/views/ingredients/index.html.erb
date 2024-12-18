@@ -1,4 +1,4 @@
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
 
 
   <%= link_to bookmarks_path, style: "position: absolute; left: 20px;" do %>
@@ -23,7 +23,7 @@
           new_ingredient_path,
           class: "btn btn-primary my-3 rounded-pill box-shadow",
           data: { turbo_frame: dom_id(Ingredient.new) },
-          style: "opacity: 0.8;" %>
+          style: "opacity: 1;" %>
     </div>
 
     <%= turbo_frame_tag Ingredient.new %>
@@ -34,7 +34,7 @@
   </div>
 
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <div data-controller="recipe-request" class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 0.8;">
+      <div data-controller="recipe-request" class="btn btn-dark mb-1 mt-3 rounded-pill box-shadow" style="opacity: 1;">
         <%= link_to "Create a recipe", recipes_path, data: {action: "click->recipe-request#handleClick"} %>
       </div>
     </div>
