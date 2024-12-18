@@ -11,6 +11,12 @@
   height: 100vh;
   position: relative;
   text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6), -5px -5px 15px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.custom-title {
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .container-home {
@@ -29,11 +35,8 @@
 
 .footer-home {
   position: fixed;
-  bottom: 10px;
+  bottom: 1px;
   width: 100%;
   color: white;
   text-align: center;
-  left: 0;
-  margin: 0;
-  padding: 10px 0;
 }
