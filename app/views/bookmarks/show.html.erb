@@ -32,22 +32,23 @@ flex; justify-content: center; align-items: center; position: relative;">
     <p>No recipe data available.</p>
   <% end %>
 
-</div>
 
 
   <%# -------------------- Button "I did it"------------------ %>
+  <div class="d-flex justify-content-end m-3">
+    <% if @recipe.done == false %>
+      <%= button_to 'I did it!',
+        { controller: "recipes",
+          action: "update",
+          id: @recipe.id,
+          recipe: { done: true } },
+        method: :patch,
+        class: "btn btn-success mx-1",
+        data: { turbo: true } %>
+    <% end %>
+  </div>
 
-  <% if @recipe.done == false %>
-    <%= button_to 'I did it',
-      { controller: "recipes",
-        action: "update",
-        id: @recipe.id,
-        recipe: { done: true } },
-      method: :patch,
-      class: "btn btn-success mx-1",
-      data: { turbo: true } %>
-  <% end %>
-
+</div>
   <%# -------------------- Comment ------------------------------------------ %>
 
 <div class="border mx-3 mb-3 p-3">
@@ -59,12 +60,14 @@ flex; justify-content: center; align-items: center; position: relative;">
       <% @comments.each do |comment| %>
         <li>
           <strong><%= comment.created_at.strftime("%d %b %Y, %H:%M") %></strong> :
-          <%= comment.content %>
-          <%= button_to "Delete",
-                        [comment.recipe, comment],
-                        method: :delete,
-                        data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" },
-                        class: "btn btn-danger" %>
+          <div class="d-inline-flex align-items-center">
+            <%= comment.content %>
+            <%= button_to "",
+                          [comment.recipe, comment],
+                          method: :delete,
+                          data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" },
+                          class: "btn btn--light fa-regular fa-trash-can" %>
+            </div>
         </li>
       <% end %>
     </ul>
@@ -76,8 +79,10 @@ flex; justify-content: center; align-items: center; position: relative;">
   <%# -------------------- Button add comment ------------------------------- %>
 
 <div class="d-flex justify-content-center gap-2">
-  <div class="btn btn-primary rounded-pill" style="width: 200px;">
-    <%= link_to "Add a comment/rating", new_recipe_comment_path(@recipe), class: "text-white text-decoration-none" %>
+  <div class="border-0 bg-transparent" style="width: 200px;">
+    <%= link_to new_recipe_comment_path(@recipe) do %>
+      <i class="fa-regular fa-message fs-1" style="cursor: pointer;"></i>
+    <% end %>
   </div>
 
 
