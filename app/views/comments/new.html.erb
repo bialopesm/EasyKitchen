@@ -1,6 +1,6 @@
   <%# ------------------------ Header --------------------------------------- %>
 
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 0.5; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
+<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
   <%= link_to request.referer, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
   <% end %>
@@ -9,7 +9,7 @@
 
   <%# -------------------- Recipe details------------------------------------ %>
 
-<div class="border mx-3 p-3 mb-3" style="border-radius: 15px !important">
+<div class="border mx-3 p-3 mb-3 bg-light" style="border-radius: 15px !important">
   <p><strong><%= @recipe.title %></strong></p>
   <p>Prep-time : <%= @recipe.prep_time %></p>
   <p>Servings : <%= @recipe.servings %></p>
@@ -17,7 +17,7 @@
 
 
 <div data-controller="insert-in-list">
-  <div class="border mx-3 p-3" style="border-radius: 15px !important">
+  <div class="border mx-3 p-3 bg-light" style="border-radius: 15px !important">
     <p>Your last rating : <%= render "form_rating", recipe: @recipe %></p>
     <p>Your comments :</p>
     <% if @comments.any? %>
@@ -37,6 +37,7 @@
 
 
   <div class="d-flex justify-content-end">
+
 
   <%# --------------------------- Comment ----------------------------------- %>
     <div data-controller="toggle" class="m-3">
