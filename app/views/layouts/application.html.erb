@@ -12,17 +12,19 @@
   </head>
 
   <body class="<%= user_signed_in? ? 'logged' : 'unlogged' %>">
-
+<%= render "shared/flashes" %>
     <% if user_signed_in? %>
       <div class="page-container">
          <div class="content-container"><%= yield %>
          </div>
          <div class="footer-container"><%= render "layouts/footer" %>
          </div>
-        </div>
+      </div>
     <% else %>
         <%= yield %>
     <% end %>
+
+
 
   </body>
 </html>

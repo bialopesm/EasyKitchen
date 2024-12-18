@@ -71,10 +71,17 @@ class RecipesController < ApplicationController
     @recipe.instructions = params[:recipe_data]["Step-by-step"]
     @recipe.done = params[:done] || false
     @recipe.save
+
     @bookmark = Bookmark.new(user: current_user, recipe: @recipe)
     @bookmark.save
-    # No need for app/views/recipes/create.html.erb
-    redirect_to new_recipe_comment_path(@recipe)
+
+    if @recipe.done == true
+      redirect_to new_recipe_comment_path(@recipe)
+    else
+      flash[:alert]="Recipe saved in the history !"
+      redirect_to request.referer
+    end
+
   end
 
   def edit
