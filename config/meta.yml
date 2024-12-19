@@ -1,0 +1,4 @@
+meta_product_name: "EasyKitchen"
+meta_title: "EasyKitchen - Recipes with what you have on your fridge"
+meta_description: "Recipes with what you have on your fridge"
+meta_image: "robot-cooking.jpg" # should exist in `app/assets/images/`
