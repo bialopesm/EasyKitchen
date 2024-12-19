@@ -1,4 +1,4 @@
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
+<div class="mb-3 p-4" style="background-color: #5edc9b; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
 
 
   <%= link_to bookmarks_path, style: "position: absolute; left: 20px;" do %>
@@ -13,7 +13,7 @@
 <div class="container-fluid" style="height: 80vh">
 
 
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE0g2ewE-S-TCq3A4R8JCG5tuw6agXuLXeBw&s)">
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://img.freepik.com/premium-photo/ingredients-cooking-food-background-with-herbs-vegetables-top-view-white-background_1040174-1574.jpg?semt=ais_hybrid)">
     <h2>Ingredients in your fridge</h2>
   </div>
 
@@ -23,7 +23,7 @@
           new_ingredient_path,
           class: "btn btn-primary my-3 rounded-pill box-shadow",
           data: { turbo_frame: dom_id(Ingredient.new) },
-          style: "opacity: 1;" %>
+          style: "opacity: 1; background-color: #21aade; border: 3px solid #dbcbb3;" %>
     </div>
 
     <%= turbo_frame_tag Ingredient.new %>
@@ -34,7 +34,7 @@
   </div>
 
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <div data-controller="recipe-request" class="btn btn-info mb-1 mt-3 rounded-pill box-shadow" style="opacity: 1;">
+      <div data-controller="recipe-request" class="btn mb-1 mt-3 rounded-pill box-shadow" style="opacity: 1; background-color: #fd8442; border: 3px solid #dbcbb3;">
         <%= link_to "Let's Cook", recipes_path, data: {action: "click->recipe-request#handleClick"} %>
       </div>
     </div>
