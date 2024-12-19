@@ -1,32 +1,29 @@
-<%= turbo_frame_tag :new_ingredient do %>
-  <%= simple_form_for [@recipe, @ingredient],
-    html: { class: "ingredient form d-flex flex-column ",
-    data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
+<%= simple_form_for [@recipe, @ingredient],
+  html: { class: "ingredient form d-flex flex-column ",
+  data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
 
-    <div class="">
-      <%= f.input :name, input_html: { class: "form-control", style: "flex: 1; border-radius: 6px" }, label: "Name", label_html: { class: "text-white" } %>
+  <div class="">
+    <%= f.input :name, input_html: { class: "form-control", style: "flex: 1; border-radius: 6px" }, label: "Name", label_html: { class: "text-white" } %>
 
-      <div class="d-flex">
-        <div class="me-3">
-          <%= f.input :quantity, input_html: { class: "form-control", style: "flex: 0.5; border-radius: 6px" }, label: "Quantity", label_html: { class: "text-white" } %>
-        </div>
-        <%= f.input :unit,
-          collection: ["Unit","Kg", "g", "L", "mL"],
-          include_blank: " ",
-          label: "Unit",
-          label_html: { class: "text-white" },
-          input_html: { class: "form-control", style: "flex: 0.75; border-radius: 6px" } %>
-        </div>
+    <div class="d-flex">
+      <div class="me-3">
+        <%= f.input :quantity, input_html: { class: "form-control", style: "flex: 0.5; border-radius: 6px" }, label: "Quantity", label_html: { class: "text-white" } %>
       </div>
-
-    <div class="d-flex justify-content-start mb-3">
-      <%= link_to ingredients_path, class: "btn btn-secondary mx-3 rounded-pill" do %>
-        <i class="fa-solid fa-xmark"></i>
-      <% end %>
-      <%= button_tag class: "btn btn-success rounded-pill" do %>
-        <i class="fa-solid fa-check"></i>
-      <% end %>
+      <%= f.input :unit,
+        collection: ["Unit","Kg", "g", "L", "mL"],
+        include_blank: " ",
+        label: "Unit",
+        label_html: { class: "text-white" },
+        input_html: { class: "form-control", style: "flex: 0.75; border-radius: 6px" } %>
+      </div>
     </div>
 
-  <% end %>
+  <div class="d-flex justify-content-start mb-3">
+    <%= link_to ingredients_path, class: "btn btn-secondary mx-3 rounded-pill" do %>
+      <i class="fa-solid fa-xmark"></i>
+    <% end %>
+    <%= button_tag class: "btn btn-success rounded-pill" do %>
+      <i class="fa-solid fa-check"></i>
+    <% end %>
+  </div>
 <% end %>
