@@ -1,7 +1,7 @@
   <%# -------------------- Header ------------------ %>
 
 <div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display:
-flex; justify-content: center; align-items: center; position: relative;">
+flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
 
   <%= link_to bookmarks_path, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
@@ -17,16 +17,17 @@ flex; justify-content: center; align-items: center; position: relative;">
 <div class="border m-3 p-3 bg-light" style="border-radius: 15px !important">
 
   <% if @bookmark.recipe.present? %>
-    <h2><strong><%= @bookmark.recipe.title %></strong></h2>
+    <h2 class="text-center fs-4 border-bottom pb-2"><strong><%= @bookmark.recipe.title %></strong></h2>
 
-    <p><strong>Preparation time:</strong> <%= @bookmark.recipe.prep_time %></p>
-    <p><strong>Servings:</strong> <%= @bookmark.recipe.servings %></p>
+    <p><i class="fa-solid fa-stopwatch fa-lg m-2"></i> <%= @bookmark.recipe.prep_time %></p>
+    <p><i class="fa-solid fa-utensils fa-lg m-2"></i> <%= @bookmark.recipe.servings %></p>
     <p><strong>Step-by-step:</strong></p>
     <ul>
     <% @bookmark.recipe.instructions.split(/\n/).each do |instruction|%>
       <li> <%=instruction %></li>
     <% end %>
     </ul>
+
     <% if @bookmark.recipe.rating.present? %>
   <p>
     <strong>Rating :</strong>
@@ -48,7 +49,7 @@ flex; justify-content: center; align-items: center; position: relative;">
           id: @recipe.id,
           recipe: { done: true } },
         method: :patch,
-        class: "btn btn-success mx-1",
+        class: "btn btn-success mx-1 rounded-pill",
         data: { turbo: true } %>
     <% end %>
   </div>
@@ -60,7 +61,7 @@ flex; justify-content: center; align-items: center; position: relative;">
 
 <div class="border mx-3 mb-3 p-3 bg-light" style="border-radius: 15px !important">
 
-  <h2>Your comment :</h2>
+  <h2>Comment :</h2>
 
   <% if @comments.any? %>
     <ul>
@@ -73,7 +74,7 @@ flex; justify-content: center; align-items: center; position: relative;">
                           [comment.recipe, comment],
                           method: :delete,
                           data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" },
-                          class: "btn btn--light fa-regular fa-trash-can" %>
+                          class: "btn btn--light fa-regular fa-trash-can mx-1" %>
             </div>
         </li>
       <% end %>
@@ -81,21 +82,22 @@ flex; justify-content: center; align-items: center; position: relative;">
   <% else %>
     <p>No comments for this recipe.</p>
   <% end %>
-</div>
 
   <%# -------------------- Button add comment ------------------------------- %>
-
-<div class="d-flex justify-content-center gap-2">
   <div class="border-0 bg-transparent" style="width: 200px;">
     <%= link_to new_recipe_comment_path(@recipe) do %>
-      <i class="fa-regular fa-message fs-1" style="cursor: pointer;"></i>
+      <div class="d-flex">
+       <i class="fa-regular fa-message fs-1" style="cursor: pointer;"></i> <p class="fa-2x pb-3">+</p>
+      </div>
     <% end %>
   </div>
 
+</div>
 
+
+<div class="d-flex justify-content-center gap-2 m-2">
   <%# -------------------- Button delete ------------------------------------ %>
-
-     <%= button_to "Delete this recipe",
+     <%= button_to "I won't cook It anymore!",
                 bookmark_path(@bookmark),
                 method: :delete,
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
