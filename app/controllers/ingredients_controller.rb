@@ -22,11 +22,7 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       respond_to do |format|
         format.html { redirect_to ingredients_path, notice: "ingredient was successfully created." }
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend(:ingredients, partial: "ingredients/ingredient",
-            locals: { ingredient: @ingredient })
-        end
-        # format.html { redirect_to ingredient_path(@ingredient) }
+        format.turbo_stream
       end
     else
       render :new, status: :unprocessable_entity
