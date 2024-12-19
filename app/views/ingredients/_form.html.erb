@@ -2,22 +2,25 @@
   html: { class: "ingredient form d-flex flex-column ",
   data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
 
-  <div class="d-flex flex-wrap align-items-center">
+  <div class="">
     <%= f.input :name, input_html: { class: "form-control", style: "flex: 1;" }, label: "Name", label_html: { class: "text-white" } %>
-    <div class="me-3">
-      <%= f.input :quantity, input_html: { class: "form-control", style: "flex: 0.5;" }, label: "Quantity", label_html: { class: "text-white" } %>
+
+    <div class="d-flex">
+      <div class="me-3">
+        <%= f.input :quantity, input_html: { class: "form-control", style: "flex: 0.5;" }, label: "Quantity", label_html: { class: "text-white" } %>
+      </div>
+      <%= f.input :unit,
+        collection: ["Unit","Kg", "g", "L", "mL"],
+        include_blank: " ",
+        label: "Unit",
+        label_html: { class: "text-white" },
+        input_html: { class: "form-control", style: "flex: 0.75;" } %>
+      </div>
     </div>
-    <%= f.input :unit,
-      collection: ["Unit","Kg", "g", "L", "mL"],
-      include_blank: " ",
-      label: "Unit",
-      label_html: { class: "text-white" },
-      input_html: { class: "form-control", style: "flex: 0.75;" } %>
-  </div>
 
   <div class="d-flex justify-content-start mb-3">
     <%= link_to "Cancel", ingredients_path, class: "btn btn-secondary mx-3 rounded-pill" %>
-    <%= f.submit "Save", class: "btn btn-success rounded-pill" %>
+    <%= f.submit "Add", class: "btn btn-success rounded-pill" %>
   </div>
 
 <% end %>
