@@ -2,8 +2,8 @@
 
 
 <div class="d-flex justify-content-between align-items-center w-100">
-  <div class="p-5 navbar-lewagon" style="background-color: #a8d254; display: flex; justify-content: center; align-items: center; opacity: 1; position: relative; border-radius: 0 0 20px 20px;">
-    <h1 class="text-center" style="margin: 0;">Welcome to EasyKitchen <%= current_user.email%></h1>
+  <div class="py-3 w-100 navbar-lewagon" style="background-color: #a8d254; display: flex; justify-content: center; align-items: center; opacity: 1; position: relative; border-radius: 0 0 20px 20px;">
+    <h1 class="text-center main-header" style="margin: 0;">Welcome <%= current_user.email%></h1>
   </div>
 </div>
 
@@ -36,9 +36,9 @@
 
                 <!-- Done status icon -->
                 <% if bookmark.recipe.done == true %>
-                  <span ><i class="fa-solid fa-square-check fa-xl"></i></span>
+                  <span class="ms-3"><i class="fa-solid fa-square-check fa-xl"></i></span>
                 <% else %>
-                  <span ><i class="fa-solid fa-bookmark fa-xl"></i></span>
+                  <span class="ms-3"><i class="fa-solid fa-bookmark fa-xl"></i></span>
                 <% end %>
               <% end %>
             </li>
