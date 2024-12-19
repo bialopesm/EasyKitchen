@@ -3,3 +3,24 @@
   min-height: 100vh;
   grid-template-rows: 1fr auto;
 }
+
+// This is for the styling of the footer navigation //
+
+.footer nav ul li {
+  margin: 15px 15px; // Adds space between icons //
+}
+
+
+.footer nav ul {
+  list-style: none; // Removes bullet points //
+}
+
+.footer-position {
+  position: fixed;
+  bottom: 0px;
+  width:100%;
+}
+
+.content-container {
+  margin-bottom: 60px;
+}
