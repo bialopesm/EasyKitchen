@@ -20,18 +20,30 @@
   <div class="border mx-3 p-3 bg-light" style="border-radius: 15px !important">
     <p>Rate this meal ! <%= render "form_rating", recipe: @recipe %></p>
     <p>Comments :</p>
-    <% if @comments.any? %>
-      <ul>
-        <% @comments.each do |comment| %>
-          <li>
-            <strong><%= comment.content %></strong> - <small><%= comment.created_at.strftime("%d %b %Y") %></small>
 
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>No comment for this recipe.</p>
-    <% end %>
+    <div>
+
+      <% if @comments.any? %>
+        <ul>
+          <% @comments.each do |comment| %>
+            <li>
+              <div class="d-flex justify-content-between">
+                <strong><%= comment.content %></strong> - <small><%= comment.created_at.strftime("%d %b %Y") %></small>
+                <%= button_to "",
+                              [comment.recipe, comment],
+                              method: :delete,
+                              data: { turbo_method: :delete},
+                              class: "btn btn--light fa-regular fa-trash-can mx-1" %>
+
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No comment for this recipe.</p>
+      <% end %>
+
+    </div>
   </div>
 
 
@@ -63,7 +75,7 @@
 
   <%# ----------- Back to home page --------------- %>
 <div class="d-flex justify-content-center">
-    <%= link_to "Skip to my next meal", erase_path, class: "btn btn-dark rounded-pill mx-5" %>
+    <%= link_to "Skip to my next meal", erase_path, class: "btn btn-info rounded-pill mx-5" %>
 </div>
 
   <%# ----------- Logo --------------- %>
