@@ -27,7 +27,13 @@ flex; justify-content: center; align-items: center; position: relative; border-r
       <li> <%=instruction %></li>
     <% end %>
     </ul>
-    <p><i class="fa-solid fa-star fa-lg m-2"></i> <%= @bookmark.recipe.rating %></p>
+
+    <% if @bookmark.recipe.rating.present? %>
+  <p>
+    <strong>Rating :</strong>
+    <%= ('⭐' * @bookmark.recipe.rating).html_safe %>
+  </p>
+<% end %>
   <% else %>
     <p>No recipe data available.</p>
   <% end %>
