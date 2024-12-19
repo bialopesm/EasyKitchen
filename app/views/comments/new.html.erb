@@ -1,6 +1,6 @@
   <%# ------------------------ Header --------------------------------------- %>
 
-<div class="mb-3 p-4" style="background-color: #a8d254; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
+<div class="mb-3 p-4" style="background-color: #5edc9b; opacity: 1; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 0 0 20px 20px;">
   <%= link_to request.referer, style: "position: absolute; left: 20px;" do %>
     <i class="fa-regular fa-circle-left fa-2xl" style="color: #000000;"></i>
   <% end %>
@@ -75,7 +75,7 @@
 
   <%# ----------- Back to home page --------------- %>
 <div class="d-flex justify-content-center">
-    <%= link_to "Skip to my next meal", erase_path, class: "btn btn-info rounded-pill mx-5" %>
+    <%= link_to "Skip to my next meal", erase_path, class: "btn btn-info rounded-pill mx-5", style:"opacity: 1; background-color: #fd8442; border: 3px solid #dbcbb3;" %>
 </div>
 
   <%# ----------- Logo --------------- %>

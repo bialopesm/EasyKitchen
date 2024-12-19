@@ -2,7 +2,7 @@
 
 
 <div class="d-flex justify-content-between align-items-center w-100">
-  <div class="py-3 w-100 navbar-lewagon" style="background-color: #a8d254; display: flex; justify-content: center; align-items: center; opacity: 1; position: relative; border-radius: 0 0 20px 20px;">
+  <div class="p-4 w-100 navbar-lewagon" style="background-color: #5edc9b; display: flex; justify-content: center; align-items: center; opacity: 1; position: relative; border-radius: 0 0 20px 20px;">
     <h1 class="text-center main-header" style="margin: 0;">Welcome <%= current_user.email%></h1>
   </div>
 </div>
@@ -13,14 +13,14 @@
 
 <div class="text-center">
   <%= link_to '+ NEW MEAL', ingredients_path, class: "btn w-75 rounded-5
-   py-2 mt-3 shadow", style: "background-color: #a8d254; opacity: 1;" %>
+   py-2 mt-3 shadow", style: "background-color: #5edc9b; opacity: 1; border: 3px solid #dbcbb3;" %>
 </div>
 
 
 <%# ---------------- Body --------------------------------------------------- %>
 
 <div class="container-fluid my-3">
-  <div class="card mx-auto shadow" style="max-width: 600px; border-radius: 24px; background-color:#f29006; opacity: 1;">
+  <div class="card mx-auto shadow" style="max-width: 600px; border-radius: 24px; background-color:#fd8442; opacity: 1;">
     <div class="card-body">
       <h2 class="text-center mb-3">My History</h2>
 
@@ -30,7 +30,7 @@
         <% if @bookmarks.present? %>
           <% @bookmarks.each do |bookmark| %>
             <li class="mb-3">
-              <%= link_to bookmark_path(bookmark), class: 'd-flex justify-content-between align-items-center btn btn-link' do %>
+              <%= link_to bookmark_path(bookmark), class: 'd-flex justify-content-between align-items-center btn btn-link rounded-3' do %>
                 <!-- Title -->
                 <span><%= bookmark.recipe.title %></span>
 
