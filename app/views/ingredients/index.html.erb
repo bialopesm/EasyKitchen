@@ -22,11 +22,11 @@
       <%= link_to "+ ingredient",
           new_ingredient_path,
           class: "btn btn-primary my-3 rounded-pill box-shadow",
-          data: { turbo_frame: dom_id(Ingredient.new) },
+          data: { turbo_frame: :new_ingredient},
           style: "opacity: 1; background-color: #21aade; border: 3px solid #dbcbb3;" %>
     </div>
 
-    <%= turbo_frame_tag Ingredient.new %>
+    <%= turbo_frame_tag :new_ingredient %>
 
     <%= turbo_frame_tag "ingredients" do %>
       <%= render @ingredients %>

@@ -26,7 +26,7 @@ class IngredientsController < ApplicationController
           render turbo_stream: turbo_stream.prepend(:ingredients, partial: "ingredients/ingredient",
             locals: { ingredient: @ingredient })
         end
-        format.html { redirect_to ingredient_path(@ingredient) }
+        # format.html { redirect_to ingredient_path(@ingredient) }
       end
     else
       render :new, status: :unprocessable_entity
