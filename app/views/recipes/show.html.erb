@@ -14,9 +14,9 @@
   <%# -------------------- Display recipe ------------------ %>
 
 <div class="border m-3 p-3 bg-light" style="border-radius: 15px !important">
-  <p><strong>Recipe title:</strong> <%= params["recipe"]["Recipe title"] %></p>
-  <p><strong>Preparation time:</strong> <%= params["recipe"]["Preparation time"] %></p>
-  <p><strong>Servings:</strong> <%= params["recipe"]["Servings"]%></p>
+  <p class="text-center fs-4 border-bottom pb-2"><strong><%= params["recipe"]["Recipe title"] %></strong></p>
+  <p><i class="fa-solid fa-stopwatch fa-lg m-2"></i> <%= params["recipe"]["Preparation time"] %></p>
+  <p><i class="fa-solid fa-utensils fa-lg m-2"></i><%= params["recipe"]["Servings"]%></p>
   <p><strong>Step-by-step:</strong></p><% params["recipe"]["Step-by-step"].split(/\n/).each do |instruction| %>
         <li> <%=instruction %></li>
     <% end %>

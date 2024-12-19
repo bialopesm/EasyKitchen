@@ -11,37 +11,49 @@
 
 <div class="border mx-3 p-3 mb-3 bg-light" style="border-radius: 15px !important">
   <p><strong><%= @recipe.title %></strong></p>
-  <p>Prep-time : <%= @recipe.prep_time %></p>
-  <p>Servings : <%= @recipe.servings %></p>
+  <p><i class="fa-solid fa-stopwatch fa-lg m-s-5 my-2"></i>   <%= @recipe.prep_time %></p>
+  <p><i class="fa-solid fa-utensils fa-lg m-s-5 my-2"></i>   <%= @recipe.servings %></p>
 </div>
 
 
 <div data-controller="insert-in-list">
   <div class="border mx-3 p-3 bg-light" style="border-radius: 15px !important">
-    <p>Your last rating : <%= render "form_rating", recipe: @recipe %></p>
-    <p>Your comments :</p>
-    <% if @comments.any? %>
-      <ul>
-        <% @comments.each do |comment| %>
-          <li>
-            <strong><%= comment.created_at.strftime("%d %b %Y, %H:%M") %></strong> :
-            <%= comment.content %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>No comment for this recipe.</p>
-    <% end %>
+    <p>Rate this meal ! <%= render "form_rating", recipe: @recipe %></p>
+    <p>Comments :</p>
+
+    <div>
+
+      <% if @comments.any? %>
+        <ul>
+          <% @comments.each do |comment| %>
+            <li>
+              <div class="d-flex justify-content-between">
+                <strong><%= comment.content %></strong> - <small><%= comment.created_at.strftime("%d %b %Y") %></small>
+                <%= button_to "",
+                              [comment.recipe, comment],
+                              method: :delete,
+                              data: { turbo_method: :delete},
+                              class: "btn btn--light fa-regular fa-trash-can mx-1" %>
+
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No comment for this recipe.</p>
+      <% end %>
+
+    </div>
   </div>
 
 
 
-  <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-center">
 
 
   <%# --------------------------- Comment ----------------------------------- %>
     <div data-controller="toggle" class="m-3">
-      <button data-action="click->toggle#fire" class="border-0 bg-transparent">
+      <button data-action="click->toggle#fire" class="border-0 bg-white p-3 rounded-pill">
         <i class="fa-regular fa-message fs-1" style="cursor: pointer;"></i>
       </button>
 
@@ -53,7 +65,7 @@
     <%# ----------------------- Share ----------------------------------------- %>
 
     <div class="mt-3 me-3">
-        <button id="share-button" class="border-0 bg-transparent" data-url="<%= recipe_url(@comment.recipe) %>">
+        <button id="share-button" class="border-0 bg-white p-3 rounded-pill" data-url="<%= recipe_url(@comment.recipe) %>">
           <i class="fa-solid fa-share-nodes fs-1"></i>
         </button>
       </div>
@@ -63,8 +75,15 @@
 
   <%# ----------- Back to home page --------------- %>
 <div class="d-flex justify-content-center">
-    <%= link_to "Back to home page", erase_path, class: "btn btn-dark rounded-pill mx-5" %>
+    <%= link_to "Skip to my next meal", erase_path, class: "btn btn-info rounded-pill mx-5" %>
 </div>
+
+  <%# ----------- Logo --------------- %>
+
+<div class="my-3" style="width: 200px; height: 200px; margin: 0 auto; border: 5px solid white; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+  <%= image_tag 'robot_logo.png', alt: 'Description of the image', class: "rounded-pill" %>
+</div>
+
 
 
   <%# -------------------- Script ------------------ %>
