@@ -7,25 +7,11 @@ class RecipesController < ApplicationController
       model: "gpt-4o-mini",
       messages: [{
         role: "user",
-        content: "Create 5 recipes using the following ingredients:
-
-        #{ingredients_formated.join}
-
-          The recipe should use this format bellow to display the 5 recipes:
-          - Recipe title:
-          - Ingredients list: (exactly as given all the ingredients)
-          - Preparation time:
-          - Servings:
-          - Step-by-step: (instructions with details for each step)
-
-          The message should return with the recipes separeted by $ Recipe title Ingredients list Preparation time Servings Step-by-step
-          "
+        content: "Create 5 recipes using the following ingredients:\n\n        #{ingredients_formated.join}\n\n          The recipe should use this format bellow to display the 5 recipes:\n          - Recipe title:\n          - Ingredients list: (exactly as given all the ingredients)\n          - Preparation time:\n          - Servings:\n          - Step-by-step: (instructions with details for each step)\n\n          The message should return with the recipes separeted by $ Recipe title Ingredients list Preparation time Servings Step-by-step\n          "
       }]
     })
 
-    # Rails.logger.info "ChatGPT Response: #{chatgpt_response.inspect}"
     response_content = chatgpt_response["choices"][0]["message"]["content"]
-    # Rails.logger.info "Response Content: #{response_content}"
 
     if session[:recipes].present?
       @recipes_from_gpt = session[:recipes]
@@ -33,12 +19,6 @@ class RecipesController < ApplicationController
       @recipes_from_gpt = extract_recipes(response_content)
       session[:recipes] = @recipes_from_gpt
     end
-
-
-    # @recipe.title = @recipe_from_gpt["Recipe title"]
-    # @recipe.prep_time = @recipe_from_gpt["Preparation time"]
-    # @recipe.servings = @recipe_from_gpt["Servings"]
-    # @recipe.instructions = @recipe_from_gpt["Step-by-step"]
 
     Rails.logger.info "Structured Recipe: #{@recipes_from_gpt.inspect}"
   end
