@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get "/erase", to: "recipes#erase"
+  # get "/listar_modelos_gemini", to: "recipes#listar_modelos_gemini"
 
   resources :ingredients
   resources :recipes, only: [:index, :show, :new, :create, :update] do

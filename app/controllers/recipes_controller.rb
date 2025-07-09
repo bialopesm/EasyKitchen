@@ -1,10 +1,13 @@
+require 'faraday'
+require 'json'
+
 class RecipesController < ApplicationController
 
   def index
     ingredients_formated = current_user.ingredients.map { |ingredient| "#{ingredient.name} #{ingredient.quantity} #{ingredient.unit}/"}
     client = OpenAI::Client.new
     chatgpt_response = client.chat(parameters: {
-      model: "gpt-4o-mini",
+      model: "gpt-4o",
       messages: [{
         role: "user",
         content: "Create 5 recipes using the following ingredients:\n\n        #{ingredients_formated.join}\n\n          The recipe should use this format bellow to display the 5 recipes:\n          - Recipe title:\n          - Ingredients list: (exactly as given all the ingredients)\n          - Preparation time:\n          - Servings:\n          - Step-by-step: (instructions with details for each step)\n\n          The message should return with the recipes separeted by $ Recipe title Ingredients list Preparation time Servings Step-by-step\n          "
@@ -23,7 +26,6 @@ class RecipesController < ApplicationController
     Rails.logger.info "Structured Recipe: #{@recipes_from_gpt.inspect}"
   end
 
-
   def new
     @recipe = Recipe.new
   end
@@ -39,7 +41,6 @@ class RecipesController < ApplicationController
     session.delete(:recipes)
     redirect_to bookmarks_path
   end
-
 
   def create
 
